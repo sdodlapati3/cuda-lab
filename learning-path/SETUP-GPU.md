@@ -46,48 +46,71 @@ print("✅ GPU:", cuda.get_current_device().name.decode())
 
 ---
 
-## 🎯 Option 2: Your ODU HPC System
+## 🎯 Option 2: ODU HPC t4flex Cluster ⭐ YOUR SETUP
 
-If you have access to GPU nodes on ODU's HPC:
+You have access to 10 T4 GPU nodes on the `t4flex` partition!
 
-### Step 1: Request a GPU Node
-
-```bash
-# Interactive session with T4 GPU
-srun --partition=gpu --gres=gpu:t4:1 --time=04:00:00 --pty bash
-
-# Or submit a job
-sbatch --partition=gpu --gres=gpu:1 your_script.sh
-```
-
-### Step 2: Load CUDA Module
+### One-Time Setup (already done!)
 
 ```bash
-module load cuda/12.0
-module load anaconda3/2023.09  # or your Python module
+# Load Python 3.12 module and create environment
+module load python3
+crun -c -p ~/envs/cuda_lab
+
+# Install packages
+crun -p ~/envs/cuda_lab pip install numba numpy jupyter jupyterlab matplotlib
 ```
 
-### Step 3: Create Conda Environment
+### Daily Workflow
+
+#### Option A: Interactive GPU Session
 
 ```bash
-conda create -n cuda-learning python=3.10 -y
-conda activate cuda-learning
-conda install numba cudatoolkit numpy jupyter -c conda-forge -y
+# Request a T4 GPU node (4 hours)
+./scripts/gpu-session.sh
+
+# Once on the GPU node, run commands with:
+crun -p ~/envs/cuda_lab python verify_cuda.py
+crun -p ~/envs/cuda_lab jupyter lab --no-browser --port=8888
 ```
 
-### Step 4: Run Jupyter on GPU Node
+#### Option B: Submit Jupyter Job
 
 ```bash
-# On the GPU node
-jupyter notebook --no-browser --port=8888
+# Submit job to run Jupyter on GPU
+sbatch scripts/start-jupyter-gpu.sh
 
-# Then tunnel from your local machine:
-ssh -L 8888:localhost:8888 your_username@turing.hpc.odu.edu
+# Check the log for connection instructions
+cat jupyter-*.log
 ```
 
-### Step 5: Open Notebooks
+### Quick Reference
 
-Navigate to `~/cuda-lab/learning-path/week-01/` and open notebooks.
+```bash
+# Load environment (do this first!)
+module load python3
+
+# Run Python script
+crun -p ~/envs/cuda_lab python my_script.py
+
+# Run Jupyter
+crun -p ~/envs/cuda_lab jupyter lab
+
+# Interactive Python
+crun -p ~/envs/cuda_lab python
+
+# Install packages
+crun -p ~/envs/cuda_lab pip install package_name
+```
+
+### Connecting to Jupyter from Local Machine
+
+```bash
+# In a new local terminal, create SSH tunnel:
+ssh -L 8888:GPUNODE:8888 sdodl001_odu_edu@hpcslurm-slurm-login-001
+
+# Then open in browser: http://localhost:8888
+```
 
 ---
 

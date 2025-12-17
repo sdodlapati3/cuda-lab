@@ -1,43 +1,50 @@
 #!/bin/bash
-# Setup CUDA learning environment (run once)
+# Setup CUDA learning environment for ODU HPC cluster
+# Uses Python 3.12 module with crun container system
+
+set -e
+
+ENV_PATH="${1:-$HOME/envs/cuda_lab}"
 
 echo "=========================================="
 echo "Setting up CUDA Learning Environment"
 echo "=========================================="
+echo "Environment path: $ENV_PATH"
+echo ""
 
-# Check if conda is available
-if ! command -v conda &> /dev/null; then
-    echo "Installing Miniconda..."
-    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh
-    bash /tmp/miniconda.sh -b -p $HOME/miniconda3
-    eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
-    conda init bash
-    echo "✅ Miniconda installed"
+# Load Python module
+echo "Loading Python 3.12 module..."
+module load python3
+
+# Create environment if it doesn't exist
+if [ -d "$ENV_PATH" ]; then
+    echo "✅ Environment already exists at $ENV_PATH"
 else
-    echo "✅ Conda already available"
+    echo "Creating new Python 3.12 environment..."
+    crun -c -p "$ENV_PATH"
+    echo "✅ Environment created"
 fi
 
-# Create environment
+# Install packages
 echo ""
-echo "Creating cuda-learning environment..."
-conda create -n cuda-learning python=3.10 -y
+echo "Installing/verifying CUDA learning packages..."
+crun -p "$ENV_PATH" pip install --quiet numba numpy jupyter jupyterlab matplotlib ipywidgets
 
-echo ""
-echo "Installing packages..."
-conda activate cuda-learning
-pip install numba numpy jupyter jupyterlab matplotlib
-
-# Verify
+# Verify installation
 echo ""
 echo "=========================================="
 echo "Verifying installation..."
 echo "=========================================="
-python -c "
-from numba import cuda
+crun -p "$ENV_PATH" python -c "
 import numpy as np
+from numba import cuda
+print('✅ Python:', __import__('sys').version.split()[0])
 print('✅ NumPy:', np.__version__)
-print('✅ Numba installed')
-print('✅ CUDA module available:', hasattr(cuda, 'jit'))
+print('✅ Numba:', __import__('numba').__version__)
+print('✅ CUDA module:', 'available' if hasattr(cuda, 'jit') else 'missing')
+print('')
+print('Note: CUDA will show as unavailable on login node.')
+print('      It will work on GPU nodes (t4flex partition).')
 "
 
 echo ""
@@ -45,7 +52,12 @@ echo "=========================================="
 echo "✅ Setup complete!"
 echo "=========================================="
 echo ""
-echo "To start learning:"
-echo "  1. Run: ./scripts/gpu-session.sh"
-echo "  2. Or submit: sbatch scripts/start-jupyter-gpu.sh"
+echo "Quick reference:"
+echo "  Load env:    module load python3"
+echo "  Run Python:  crun -p $ENV_PATH python script.py"
+echo "  Run Jupyter: crun -p $ENV_PATH jupyter lab"
+echo ""
+echo "To start learning on GPU:"
+echo "  1. Interactive: ./scripts/gpu-session.sh"
+echo "  2. Jupyter job: sbatch scripts/start-jupyter-gpu.sh"
 echo ""
