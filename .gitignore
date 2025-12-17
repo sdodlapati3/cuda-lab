@@ -1,0 +1,25 @@
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.cubin
+*.fatbin
+*.ptx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Compiled binaries
+build/
+bin/
+
+# Logs
+*.log
