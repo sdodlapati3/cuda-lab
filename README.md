@@ -8,9 +8,28 @@ A personal CUDA programming learning repository with documentation and practice 
 
 | Resource | Description |
 |----------|-------------|
-| 📖 **[CUDA Programming Guide](cuda-programming-guide/index.md)** | Full reference documentation (Table of Contents) |
-| ⚡ **[Quick Reference Cheatsheet](notes/cuda-quick-reference.md)** | Common patterns, syntax, code snippets |
-| 🔬 **[Practice Examples](practice/)** | Hands-on CUDA code |
+| 🎯 **[START HERE: Learning Path](learning-path/README.md)** | **Interactive notebooks for learning CUDA** |
+| 📅 **[12-Week Curriculum](learning-path/12-week-curriculum.md)** | Structured learning plan |
+| 📖 **[CUDA Programming Guide](cuda-programming-guide/index.md)** | Full reference documentation |
+| ⚡ **[Quick Reference Cheatsheet](notes/cuda-quick-reference.md)** | Common patterns & syntax |
+| 🔬 **[Practice Exercises](practice/)** | Standalone CUDA code exercises |
+
+---
+
+## 🎓 Learning Path (Recommended)
+
+The **[Learning Path](learning-path/README.md)** provides interactive Jupyter notebooks that combine theory, code examples, and exercises in one place.
+
+### Week 1: GPU Fundamentals (Available Now!)
+| Day | Notebook | Topics |
+|-----|----------|--------|
+| 1 | [GPU Basics](learning-path/week-01/day-1-gpu-basics.ipynb) | CPU vs GPU, device query, first kernel |
+| 2 | [Thread Indexing](learning-path/week-01/day-2-thread-indexing.ipynb) | 1D/2D indexing, grid-stride loops |
+| 3 | [Memory Basics](learning-path/week-01/day-3-memory-basics.ipynb) | Transfers, pinned memory, optimization |
+| 4 | [Error Handling](learning-path/week-01/day-4-error-handling.ipynb) | Debugging, common pitfalls |
+| 5 | [Checkpoint Quiz](learning-path/week-01/checkpoint-quiz.md) | Self-assessment |
+
+See the **[12-Week Curriculum](learning-path/12-week-curriculum.md)** for the complete plan.
 
 ---
 
