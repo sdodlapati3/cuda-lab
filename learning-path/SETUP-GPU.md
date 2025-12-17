@@ -114,7 +114,62 @@ ssh -L 8888:GPUNODE:8888 sdodl001_odu_edu@hpcslurm-slurm-login-001
 
 ---
 
-## 🎯 Option 3: Local Machine with NVIDIA GPU
+## 🎯 Option 3: Advanced GPUs (B200, H100, A100) + CUDA 13.1 🔥
+
+Your cluster has cutting-edge GPUs! Here's how to use them:
+
+### Available Advanced GPU Partitions
+
+| Partition | GPU | GPUs/Node | Memory | Use Case |
+|-----------|-----|-----------|--------|----------|
+| `b200flex` | B200 (Blackwell) | 8 | 192GB HBM3e | Latest architecture! |
+| `h100octflex` | H100 | 8 | 80GB HBM3 | Large models, multi-GPU |
+| `h100quadflex` | H100 | 4 | 80GB HBM3 | Medium workloads |
+| `h100flex` | H100 | 1 | 80GB HBM3 | Single-GPU learning |
+| `a100flex` | A100 | 1 | 40-80GB | Great for AI/ML |
+| `t4flex` | T4 | 1 | 16GB | Entry-level learning |
+
+### Setup CUDA 13.1 Environment
+
+```bash
+# One-time setup for CUDA 13.1
+./scripts/setup-cuda13.sh
+
+# This creates ~/envs/cuda13 with:
+# - numba + numba-cuda (new separate package!)
+# - cuda-python (NVIDIA bindings)
+# - cupy (GPU NumPy)
+```
+
+### Request Advanced GPU
+
+```bash
+# B200 (Blackwell) - Latest GPU!
+./scripts/gpu-advanced.sh b200flex 1
+
+# H100 (Hopper) - Great for learning
+./scripts/gpu-advanced.sh h100flex 1
+
+# A100 (Ampere) - Solid all-rounder
+./scripts/gpu-advanced.sh a100flex 1
+
+# Or manually:
+srun --partition=h100flex --gres=gpu:1 -c 8 --mem=64G --time=04:00:00 --pty bash
+```
+
+### CUDA 13.1 Features (B200/H100)
+
+| Feature | T4 | H100/B200 |
+|---------|-------|-----------|
+| FP8 Tensor Cores | ❌ | ✅ |
+| Thread Block Clusters | ❌ | ✅ |
+| Tensor Memory Accelerator | ❌ | ✅ |
+| Async Copy | Basic | Advanced |
+| Memory Bandwidth | 320 GB/s | 3+ TB/s |
+
+---
+
+## 🎯 Option 4: Local Machine with NVIDIA GPU
 
 If you have a local NVIDIA GPU:
 
