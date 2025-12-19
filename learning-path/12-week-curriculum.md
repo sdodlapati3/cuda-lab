@@ -6,6 +6,25 @@
 
 ---
 
+## 📜 Learning Philosophy
+
+> **CUDA C++ First, Python/Numba as Optional Backup**
+
+All notebooks in this curriculum follow this structure:
+1. **CUDA C++ code examples** - The PRIMARY learning material
+2. **Python/Numba code** - OPTIONAL alternative for quick Colab testing
+3. **Exercises** - Write CUDA C++ first, Python optional
+
+**Why CUDA C++ first?**
+- Industry standard for GPU programming
+- Transferable skills to any CUDA project
+- Deep understanding of memory management, synchronization
+- Production CUDA code is written in C++
+
+**Day 5 each week:** Practice & Quiz (consolidation day, no new content)
+
+---
+
 ## Overview
 
 This is a **streamlined, achievable** curriculum that focuses on practical skills over comprehensive coverage. Master these 12 weeks and you'll be able to:

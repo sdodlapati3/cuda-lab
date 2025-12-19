@@ -2,6 +2,22 @@
 
 A personal CUDA programming learning repository with documentation and practice examples.
 
+## 📜 Learning Philosophy
+
+> **CUDA C++ First, Python/Numba as Optional Backup**
+
+This repository prioritizes **real CUDA C++ programming**:
+- All notebooks show **CUDA C++ code first** as the primary learning material
+- **Python/Numba** code is provided as an **optional alternative** for quick interactive testing in Colab
+- The goal is to learn **actual CUDA programming**, not just GPU abstractions
+- Practice exercises use `.cu` files compiled with `nvcc`
+
+**Why this approach?**
+- CUDA C++ is the industry standard for GPU programming
+- Understanding real CUDA gives you transferable skills to any framework
+- Python/Numba is useful for prototyping but hides important details
+- Most production CUDA code is written in C++
+
 ---
 
 ## 🚀 Quick Access
@@ -12,7 +28,7 @@ A personal CUDA programming learning repository with documentation and practice 
 | 📅 **[12-Week Curriculum](learning-path/12-week-curriculum.md)** | Structured learning plan |
 | 📖 **[CUDA Programming Guide](cuda-programming-guide/index.md)** | Full reference documentation |
 | ⚡ **[Quick Reference Cheatsheet](notes/cuda-quick-reference.md)** | Common patterns & syntax |
-| 🔬 **[Practice Exercises](practice/)** | Standalone CUDA code exercises |
+| 🔬 **[Practice Exercises](practice/)** | Standalone CUDA C++ exercises |
 
 ---
 

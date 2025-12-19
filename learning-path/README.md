@@ -2,7 +2,26 @@
 
 > 🎯 **Interactive, hands-on CUDA learning through Jupyter notebooks**
 
-## 🚀 Getting Started
+## � Learning Philosophy
+
+> **CUDA C++ First, Python/Numba as Optional Backup**
+
+Every notebook in this learning path follows this pattern:
+1. **Concept explanation** with diagrams and theory
+2. **CUDA C++ code** as the PRIMARY implementation
+3. **Python/Numba code** as OPTIONAL for quick interactive testing
+
+**Why?**
+- CUDA C++ is what you'll use in production
+- Understanding real CUDA gives transferable skills
+- Python/Numba hides memory management and other crucial details
+- The goal is to become a CUDA programmer, not just use GPU abstractions
+
+**Day 5 Schedule:** Each week has 4 days of new content + Day 5 for practice & quiz.
+
+---
+
+## �🚀 Getting Started
 
 **First time?** See **[SETUP-GPU.md](SETUP-GPU.md)** for how to access a T4 GPU via:
 - Google Colab (free, easiest)
