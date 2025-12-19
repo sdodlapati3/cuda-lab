@@ -21,8 +21,8 @@ This is a **streamlined, achievable** curriculum that focuses on practical skill
 
 | Week | Focus | Status | Completed |
 |------|-------|--------|-----------|
-| 1 | GPU Fundamentals | ⬜ Not Started | |
-| 2 | Memory Patterns | ⬜ Not Started | |
+| 1 | GPU Fundamentals | ✅ Complete | 2025-01 |
+| 2 | Memory Patterns | 🔄 In Progress | |
 | 3 | Parallel Patterns I | ⬜ Not Started | |
 | 4 | Reduction & Atomics | ⬜ Not Started | |
 | 5 | Prefix Sum (Scan) | ⬜ Not Started | |
@@ -67,6 +67,15 @@ This is a **streamlined, achievable** curriculum that focuses on practical skill
 - Use shared memory effectively
 - Avoid bank conflicts
 - Profile memory behavior
+
+### Daily Schedule
+| Day | Topic | Materials |
+|-----|-------|-----------|
+| 1 | Memory coalescing | [day-1-memory-coalescing.ipynb](week-02/day-1-memory-coalescing.ipynb) |
+| 2 | Shared memory | [day-2-shared-memory.ipynb](week-02/day-2-shared-memory.ipynb) |
+| 3 | Bank conflicts | [day-3-bank-conflicts.ipynb](week-02/day-3-bank-conflicts.ipynb) |
+| 4 | Constant & texture memory | [day-4-special-memory.ipynb](week-02/day-4-special-memory.ipynb) |
+| 5 | Practice & Quiz | Exercises + [checkpoint-quiz.md](week-02/checkpoint-quiz.md) |
 
 ### Topics
 1. Global memory access patterns
