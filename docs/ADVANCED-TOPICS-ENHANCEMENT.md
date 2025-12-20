@@ -1,8 +1,11 @@
 # Advanced CUDA Topics Enhancement Plan
 
+> **Updated:** December 20, 2025  
+> **Status:** Partially Implemented - Reference Document
+
 ## Overview
 
-This document identifies advanced CUDA features from the Programming Guide Chapter 4 (Special Topics) and external sources that could enhance our 14-week learning path. These topics represent cutting-edge CUDA capabilities that go beyond the current curriculum.
+This document identifies advanced CUDA features from the Programming Guide Chapter 4 (Special Topics) and external sources that could enhance our 16-week learning path. Many of these topics have now been incorporated into Weeks 13-16.
 
 ---
 
@@ -10,18 +13,18 @@ This document identifies advanced CUDA features from the Programming Guide Chapt
 
 ### Current Coverage vs. Gaps
 
-| Topic | Currently Covered? | Priority | Enhancement Potential |
-|-------|-------------------|----------|----------------------|
-| Cooperative Groups | Partial (Week 6) | 🔴 High | Major enhancement needed |
-| CUDA Graphs | Partial (Week 11) | 🔴 High | Deep dive needed |
-| Dynamic Parallelism (CDP2) | Not covered | 🔴 High | New week candidate |
-| Virtual Memory Management | Not covered | 🟡 Medium | Advanced week candidate |
-| Stream-Ordered Memory | Partial (Week 9) | 🟡 Medium | Enhancement possible |
-| Unified Memory | Basic (Week 4) | 🟡 Medium | HMM/Grace Hopper update |
-| Inter-Process Communication | Not covered | 🟡 Medium | Multi-GPU enhancement |
-| Programmatic Dependent Launch | Not covered | 🔵 Advanced | Hopper+ features |
-| Multi-Instance GPU (MIG) | Not covered | 🟢 Low | Infrastructure topic |
-| Error Log Management | Not covered | 🟢 Low | Debug topic |
+| Topic | Currently Covered? | Priority | Status |
+|-------|-------------------|----------|--------|
+| Cooperative Groups | Week 11, Week 15 | 🔴 High | ✅ Covered |
+| CUDA Graphs | Week 10, practice/05 | 🔴 High | ✅ Covered |
+| Dynamic Parallelism (CDP2) | Week 11 | 🔴 High | ✅ Covered |
+| Virtual Memory Management | Week 14 | 🟡 Medium | ✅ Covered |
+| Stream-Ordered Memory | Week 9, Week 14 | 🟡 Medium | ✅ Covered |
+| Unified Memory | Week 13 (dedicated) | 🟡 Medium | ✅ Covered |
+| Inter-Process Communication | Not covered | 🟡 Medium | Future enhancement |
+| Programmatic Dependent Launch | Week 15 | 🔵 Advanced | ✅ Covered |
+| Multi-Instance GPU (MIG) | Not covered | 🟢 Low | Future enhancement |
+| Error Log Management | Not covered | 🟢 Low | Future enhancement |
 
 ---
 
