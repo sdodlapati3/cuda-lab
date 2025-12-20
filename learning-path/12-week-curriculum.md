@@ -1,8 +1,8 @@
-# CUDA Learning: 15-Week Comprehensive Curriculum
+# CUDA Learning: 16-Week Comprehensive Curriculum
 
-> 🎯 **Goal:** Become proficient in CUDA programming in 15 focused weeks  
+> 🎯 **Goal:** Become proficient in CUDA programming in 16 focused weeks  
 > ⏱️ **Time commitment:** 4-6 hours per day, 5-6 days per week  
-> 📅 **Total:** ~375 hours of focused learning
+> 📅 **Total:** ~400 hours of focused learning
 
 ---
 
@@ -27,7 +27,7 @@ All notebooks in this curriculum follow this structure:
 
 ## Overview
 
-This is a **comprehensive, achievable** curriculum that focuses on practical skills through 14 weeks. Master these weeks and you'll be able to:
+This is a **comprehensive, achievable** curriculum that focuses on practical skills through 16 weeks. Master these weeks and you'll be able to:
 
 - Write efficient CUDA kernels from scratch
 - Optimize GPU code using profiling tools
@@ -57,6 +57,7 @@ This is a **comprehensive, achievable** curriculum that focuses on practical ski
 | **13** | **Tensor Cores & Mixed Precision** | ⬜ Not Started | |
 | **14** | **Real-World Applications** | ⬜ Not Started | |
 | **15** | **Dynamic Parallelism (CDP)** | ⬜ Not Started | |
+| **16** | **VMM & Advanced Memory** | ⬜ Not Started | |
 
 ---
 
@@ -432,6 +433,50 @@ nvcc -rdc=true program.cu -o program -lcudadevrt
 
 ---
 
+## Week 16: VMM & Advanced Memory 🆕
+
+### Learning Goals
+- Master Virtual Memory Management (VMM) APIs
+- Implement stream-ordered memory allocation
+- Build multi-GPU memory sharing with VMM
+- Create custom GPU memory allocators
+
+### Daily Schedule
+| Day | Topic | Materials |
+|-----|-------|-----------|
+| 1 | VMM fundamentals | [day-1-vmm-fundamentals.ipynb](week-16/day-1-vmm-fundamentals.ipynb) |
+| 2 | Stream-ordered memory | [day-2-stream-ordered-memory.ipynb](week-16/day-2-stream-ordered-memory.ipynb) |
+| 3 | Multi-GPU VMM | [day-3-multi-gpu-vmm.ipynb](week-16/day-3-multi-gpu-vmm.ipynb) |
+| 4 | Custom allocators | [day-4-custom-allocators.ipynb](week-16/day-4-custom-allocators.ipynb) |
+| 5 | Practice & Quiz | Exercises + [checkpoint-quiz.md](week-16/checkpoint-quiz.md) |
+
+### Topics
+1. Virtual vs physical memory separation
+2. cuMemAddressReserve, cuMemCreate, cuMemMap, cuMemSetAccess
+3. cudaMallocAsync and memory pools
+4. Pool reuse policies and release thresholds
+5. Growable GPU buffers without data copies
+6. Multi-GPU peer access with VMM
+
+### Hardware Requirements
+- GPU with Compute Capability 7.0+ (VMM support)
+- CUDA 11.2+ for stream-ordered allocation
+- Multiple GPUs for multi-GPU exercises (optional)
+
+### Compilation
+```bash
+# Driver API for VMM
+nvcc -lcuda program.cu -o program
+```
+
+### Deliverables
+- [ ] Implement growable GPU buffer with VMM
+- [ ] Build custom memory pool allocator
+- [ ] Compare cudaMalloc vs cudaMallocAsync performance
+- [ ] Quiz score ≥ 24/30
+
+---
+
 ## 📚 Resources
 
 ### Primary Materials
@@ -462,7 +507,9 @@ By completing this curriculum, you should be able to:
 - [ ] **Build custom PyTorch CUDA extensions**
 - [ ] **Benchmark GPU code professionally**
 - [ ] **Implement dynamic parallelism patterns**
+- [ ] **Use VMM for advanced memory management**
+- [ ] **Build custom GPU memory allocators**
 
 ---
 
-*This 15-week curriculum provides comprehensive CUDA training from fundamentals to production-ready applications.*
+*This 16-week curriculum provides comprehensive CUDA training from fundamentals to production-ready applications.*
