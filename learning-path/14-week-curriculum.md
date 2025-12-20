@@ -1,8 +1,8 @@
-# CUDA Learning: 12-Week MVP Curriculum
+# CUDA Learning: 14-Week Comprehensive Curriculum
 
-> 🎯 **Goal:** Become proficient in CUDA programming in 12 focused weeks  
+> 🎯 **Goal:** Become proficient in CUDA programming in 14 focused weeks  
 > ⏱️ **Time commitment:** 4-6 hours per day, 5-6 days per week  
-> 📅 **Total:** ~300 hours of focused learning
+> 📅 **Total:** ~350 hours of focused learning
 
 ---
 
@@ -27,12 +27,14 @@ All notebooks in this curriculum follow this structure:
 
 ## Overview
 
-This is a **streamlined, achievable** curriculum that focuses on practical skills over comprehensive coverage. Master these 12 weeks and you'll be able to:
+This is a **comprehensive, achievable** curriculum that focuses on practical skills through 14 weeks. Master these weeks and you'll be able to:
 
 - Write efficient CUDA kernels from scratch
 - Optimize GPU code using profiling tools
 - Handle real-world problems (image processing, matrix operations, ML primitives)
 - Understand multi-GPU and advanced patterns
+- **Leverage Tensor Cores for AI/ML workloads**
+- **Build production-ready CUDA applications**
 
 ---
 
@@ -52,6 +54,8 @@ This is a **streamlined, achievable** curriculum that focuses on practical skill
 | 10 | Advanced Patterns | ⬜ Not Started | |
 | 11 | Multi-GPU & Scaling | ⬜ Not Started | |
 | 12 | Capstone Project | ⬜ Not Started | |
+| **13** | **Tensor Cores & Mixed Precision** | ⬜ Not Started | |
+| **14** | **Real-World Applications** | ⬜ Not Started | |
 
 ---
 
@@ -318,6 +322,74 @@ Apply everything learned to a complete, optimized application.
 
 ---
 
+## Week 13: Tensor Cores & Mixed Precision 🆕
+
+### Learning Goals
+- Understand Tensor Core architecture
+- Program with WMMA API
+- Implement mixed precision training concepts
+- Use cuBLAS with Tensor Core acceleration
+
+### Daily Schedule
+| Day | Topic | Materials |
+|-----|-------|-----------|
+| 1 | Tensor Core basics | [day-1-tensor-core-basics.ipynb](week-13/day-1-tensor-core-basics.ipynb) |
+| 2 | WMMA programming | [day-2-wmma.ipynb](week-13/day-2-wmma.ipynb) |
+| 3 | Mixed precision | [day-3-mixed-precision.ipynb](week-13/day-3-mixed-precision.ipynb) |
+| 4 | cuBLAS Tensor Cores | [day-4-cublas-tensor.ipynb](week-13/day-4-cublas-tensor.ipynb) |
+| 5 | Practice & Quiz | Exercises + [checkpoint-quiz.md](week-13/checkpoint-quiz.md) |
+
+### Topics
+1. Tensor Core vs CUDA Core architecture
+2. WMMA fragment types (matrix_a, matrix_b, accumulator)
+3. FP16, TF32, BF16 data types
+4. Loss scaling for gradient underflow prevention
+5. cuBLAS math modes and compute types
+
+### Hardware Requirements
+- GPU with Compute Capability 7.0+ (Volta, Turing, Ampere, Hopper)
+- TF32 and BF16 require Ampere (SM 8.0+)
+
+### Deliverables
+- [ ] Implement basic WMMA matrix multiply
+- [ ] Compare performance: CUDA cores vs Tensor Cores
+- [ ] Implement loss scaling for mixed precision
+- [ ] Quiz score ≥ 24/30
+
+---
+
+## Week 14: Real-World CUDA Applications 🆕
+
+### Learning Goals
+- Implement fused kernels for production
+- Optimize attention mechanisms
+- Build PyTorch CUDA extensions
+- Benchmark professionally
+
+### Daily Schedule
+| Day | Topic | Materials |
+|-----|-------|-----------|
+| 1 | Fused kernels | [day-1-fused-kernels.ipynb](week-14/day-1-fused-kernels.ipynb) |
+| 2 | Attention mechanisms | [day-2-attention.ipynb](week-14/day-2-attention.ipynb) |
+| 3 | PyTorch extensions | [day-3-pytorch-extensions.ipynb](week-14/day-3-pytorch-extensions.ipynb) |
+| 4 | Benchmarking | [day-4-benchmarking.ipynb](week-14/day-4-benchmarking.ipynb) |
+| 5 | Practice & Quiz | Exercises + [checkpoint-quiz.md](week-14/checkpoint-quiz.md) |
+
+### Topics
+1. Kernel fusion patterns (softmax, layernorm)
+2. Memory-efficient attention (tiling, Flash Attention concepts)
+3. PyTorch C++ extension API
+4. autograd.Function integration
+5. Professional benchmarking methodology
+
+### Deliverables
+- [ ] Implement fused softmax kernel
+- [ ] Build basic PyTorch CUDA extension
+- [ ] Benchmark with statistical analysis
+- [ ] Quiz score ≥ 24/30
+
+---
+
 ## 📚 Resources
 
 ### Primary Materials
@@ -343,7 +415,11 @@ By completing this curriculum, you should be able to:
 - [ ] Work with multi-GPU systems
 - [ ] Achieve 80%+ theoretical peak on bandwidth-bound kernels
 - [ ] Achieve 50%+ theoretical peak on compute-bound kernels
+- [ ] **Program Tensor Cores with WMMA for AI workloads**
+- [ ] **Implement mixed precision training techniques**
+- [ ] **Build custom PyTorch CUDA extensions**
+- [ ] **Benchmark GPU code professionally**
 
 ---
 
-*This curriculum replaces the original 26-week plan with a more focused, achievable path.*
+*This 14-week curriculum provides comprehensive CUDA training from fundamentals to production-ready applications.*
