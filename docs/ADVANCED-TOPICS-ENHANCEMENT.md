@@ -17,14 +17,35 @@ This document identifies advanced CUDA features from the Programming Guide Chapt
 |-------|-------------------|----------|--------|
 | Cooperative Groups | Week 11, Week 15 | 🔴 High | ✅ Covered |
 | CUDA Graphs | Week 10, practice/05 | 🔴 High | ✅ Covered |
-| Dynamic Parallelism (CDP2) | Week 11 | 🔴 High | ✅ Covered |
-| Virtual Memory Management | Week 14 | 🟡 Medium | ✅ Covered |
+| Dynamic Parallelism (CDP2) | Week 11, Week 15 | 🔴 High | ✅ Covered |
+| Virtual Memory Management | Week 14, Week 16 | 🟡 Medium | ✅ Covered |
 | Stream-Ordered Memory | Week 9, Week 14 | 🟡 Medium | ✅ Covered |
 | Unified Memory | Week 13 (dedicated) | 🟡 Medium | ✅ Covered |
-| Inter-Process Communication | Not covered | 🟡 Medium | Future enhancement |
+| Inter-Process Communication | Reference guide only | 🟡 Medium | ❌ Future work |
 | Programmatic Dependent Launch | Week 15 | 🔵 Advanced | ✅ Covered |
-| Multi-Instance GPU (MIG) | Not covered | 🟢 Low | Future enhancement |
-| Error Log Management | Not covered | 🟢 Low | Future enhancement |
+| Multi-Instance GPU (MIG) | Not covered | 🟢 Low | ❌ Future work |
+| Error Log Management | Not covered | 🟢 Low | ❌ Future work |
+| Advanced Texture Objects | Basic in Week 2 | 🟢 Low | ⚠️ Partial |
+
+---
+
+## 🔮 Future Enhancement Candidates
+
+These topics are documented in `cuda-programming-guide/` but not yet in the learning path:
+
+### 1. Inter-Process Communication (IPC)
+- `cudaIpcGetMemHandle` / `cudaIpcOpenMemHandle`
+- Sharing GPU memory between processes
+- Use case: Multi-process training, inference servers
+
+### 2. Multi-Instance GPU (MIG)
+- Partitioning A100/H100 into isolated instances
+- `nvidia-smi mig` commands
+- Use case: Cloud/multi-tenant environments
+
+### 3. Error Log Management
+- `cudaDeviceGetAsyncErrorInfo`
+- Advanced debugging for production systems
 
 ---
 
