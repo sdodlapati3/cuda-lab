@@ -1,10 +1,10 @@
-# 🚀 CUDA Learning Path - 16 Week Curriculum
+# 🚀 CUDA Learning Path - 18 Week Curriculum
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-01/day-1-gpu-basics.ipynb)
 
 > 🎯 **Interactive, hands-on CUDA learning through Jupyter notebooks**
 
-A comprehensive 16-week CUDA programming curriculum with hands-on Jupyter notebooks. All notebooks are designed to run on Google Colab with T4 GPU.
+A comprehensive 18-week CUDA programming curriculum with hands-on Jupyter notebooks. Core content (Weeks 1-16) runs on Google Colab with T4 GPU. Advanced topics (Weeks 17-18) require HPC cluster access with A100/H100 GPUs.
 
 > **⚠️ Before running in Colab:** Go to `Runtime → Change runtime type → T4 GPU`!
 
@@ -47,6 +47,10 @@ Every notebook follows this pattern:
 | 14 | Memory Management | Virtual memory, pools, async allocation, fragmentation |
 | 15 | Advanced Sync | Grid-wide sync, programmatic launch, cooperative kernels |
 | 16 | Final Capstone | Integration project, real-world optimization, best practices |
+| **17** | **IPC & Textures** ⚡ | Inter-process communication, texture objects, image processing |
+| **18** | **MIG & Production** ⚡ | Multi-Instance GPU, error management, production patterns |
+
+> ⚡ Weeks 17-18 require HPC cluster with A100/H100/B200 GPUs
 
 ---
 
@@ -62,15 +66,15 @@ Every notebook follows this pattern:
          ▼                                    ▼                                ▼
 ┌─────────────────┐               ┌─────────────────┐              ┌─────────────────┐
 │  FOUNDATIONS    │               │   OPTIMIZATION   │              │   ADVANCED      │
-│   Weeks 1-6     │───────────────│   Weeks 7-12     │──────────────│   Weeks 13-16   │
+│   Weeks 1-6     │───────────────│   Weeks 7-12     │──────────────│   Weeks 13-18   │
 └─────────────────┘               └─────────────────┘              └─────────────────┘
          │                                    │                                │
          ▼                                    ▼                                ▼
 • GPU Architecture         • Occupancy Tuning          • Unified Memory
 • Thread/Block Model       • Profiling Tools           • Virtual Memory
 • Memory Hierarchy         • Streams & Events          • Advanced Sync
-• Parallel Patterns        • CUDA Graphs               • Real-world Projects
-• Scan & Reduction         • Multi-GPU Basics          • Production Patterns
+• Parallel Patterns        • CUDA Graphs               • IPC & Textures (HPC)
+• Scan & Reduction         • Multi-GPU Basics          • MIG & Production (HPC)
 • Matrix Operations        • Capstone Project          • Final Integration
 ```
 
@@ -80,7 +84,7 @@ Every notebook follows this pattern:
 |-------|-------|-----------------|-------------------|
 | **Foundations** | 1-6 | Write kernels, manage memory, implement algorithms | [01-foundations](../practice/01-foundations/), [02-memory](../practice/02-memory/) |
 | **Optimization** | 7-12 | Profile, tune, use streams/graphs, multi-GPU | [03-parallel](../practice/03-parallel/), [04-optimization](../practice/04-optimization/) |
-| **Advanced** | 13-16 | Unified memory, advanced sync, production code | [05-advanced](../practice/05-advanced/) |
+| **Advanced** | 13-18 | Unified memory, advanced sync, IPC, MIG, production | [05-advanced](../practice/05-advanced/), [06-systems](../practice/06-systems/) |
 
 ---
 
@@ -304,6 +308,8 @@ jupyter notebook
 | Week 14 | ⬜ Not Started | | Memory Management |
 | Week 15 | ⬜ Not Started | | Advanced Sync |
 | Week 16 | ⬜ Not Started | | Final Capstone |
+| Week 17 | ✅ Complete | [week-17](week-17/) | IPC & Textures (HPC) |
+| Week 18 | ✅ Complete | [week-18](week-18/) | MIG & Production (HPC) |
 
 ---
 
@@ -318,6 +324,7 @@ Hands-on coding exercises to reinforce each week's concepts:
 | [03-parallel](../practice/03-parallel/) | Weeks 4-5 | Reduction, Warp primitives, Scan, Histogram |
 | [04-optimization](../practice/04-optimization/) | Weeks 7-9 | Occupancy, Streams, Events |
 | [05-advanced](../practice/05-advanced/) | Weeks 10-16 | Graphs, Unified memory, Integration |
+| [06-systems](../practice/06-systems/) | Weeks 17-18 | IPC, Textures, MIG, Production (HPC) |
 
 ---
 
