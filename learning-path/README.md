@@ -1,10 +1,10 @@
-# 🚀 CUDA Learning Path - 12 Week Curriculum
+# 🚀 CUDA Learning Path - 16 Week Curriculum
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-01/day-1-gpu-basics.ipynb)
 
 > 🎯 **Interactive, hands-on CUDA learning through Jupyter notebooks**
 
-A comprehensive 12-week CUDA programming curriculum with hands-on Jupyter notebooks. All notebooks are designed to run on Google Colab with T4 GPU.
+A comprehensive 16-week CUDA programming curriculum with hands-on Jupyter notebooks. All notebooks are designed to run on Google Colab with T4 GPU.
 
 > **⚠️ Before running in Colab:** Go to `Runtime → Change runtime type → T4 GPU`!
 
@@ -43,6 +43,44 @@ Every notebook follows this pattern:
 | 10 | CUDA Graphs | Graph basics, explicit API, updates, optimization |
 | 11 | Advanced Features | Cooperative groups, grid sync, dynamic parallelism |
 | 12 | Multi-GPU & Capstone | Multi-GPU programming, optimization review, capstone project |
+| 13 | Unified Memory | Managed memory, prefetching, migration, oversubscription |
+| 14 | Memory Management | Virtual memory, pools, async allocation, fragmentation |
+| 15 | Advanced Sync | Grid-wide sync, programmatic launch, cooperative kernels |
+| 16 | Final Capstone | Integration project, real-world optimization, best practices |
+
+---
+
+## 🗺️ Learning Roadmap
+
+```
+                    ┌──────────────────────────────────────────────────────────┐
+                    │                   CUDA LEARNING PATH                      │
+                    └──────────────────────────────────────────────────────────┘
+                                              │
+         ┌────────────────────────────────────┼────────────────────────────────┐
+         │                                    │                                │
+         ▼                                    ▼                                ▼
+┌─────────────────┐               ┌─────────────────┐              ┌─────────────────┐
+│  FOUNDATIONS    │               │   OPTIMIZATION   │              │   ADVANCED      │
+│   Weeks 1-6     │───────────────│   Weeks 7-12     │──────────────│   Weeks 13-16   │
+└─────────────────┘               └─────────────────┘              └─────────────────┘
+         │                                    │                                │
+         ▼                                    ▼                                ▼
+• GPU Architecture         • Occupancy Tuning          • Unified Memory
+• Thread/Block Model       • Profiling Tools           • Virtual Memory
+• Memory Hierarchy         • Streams & Events          • Advanced Sync
+• Parallel Patterns        • CUDA Graphs               • Real-world Projects
+• Scan & Reduction         • Multi-GPU Basics          • Production Patterns
+• Matrix Operations        • Capstone Project          • Final Integration
+```
+
+### Skill Progression
+
+| Phase | Weeks | Skills Acquired | Practice Exercises |
+|-------|-------|-----------------|-------------------|
+| **Foundations** | 1-6 | Write kernels, manage memory, implement algorithms | [01-foundations](../practice/01-foundations/), [02-memory](../practice/02-memory/) |
+| **Optimization** | 7-12 | Profile, tune, use streams/graphs, multi-GPU | [03-parallel](../practice/03-parallel/), [04-optimization](../practice/04-optimization/) |
+| **Advanced** | 13-16 | Unified memory, advanced sync, production code | [05-advanced](../practice/05-advanced/) |
 
 ---
 
@@ -176,6 +214,50 @@ Every notebook follows this pattern:
 
 ---
 
+## 🧮 Week 13: Unified Memory
+
+| Day | Topic | Open in Colab |
+|-----|-------|---------------|
+| 1 | Managed Memory Basics | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-13/day-1-managed-memory.ipynb) |
+| 2 | Prefetching & Hints | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-13/day-2-prefetching.ipynb) |
+| 3 | Memory Migration | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-13/day-3-migration.ipynb) |
+| 4 | Oversubscription | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-13/day-4-oversubscription.ipynb) |
+
+---
+
+## 💾 Week 14: Memory Management
+
+| Day | Topic | Open in Colab |
+|-----|-------|---------------|
+| 1 | Virtual Memory | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-14/day-1-virtual-memory.ipynb) |
+| 2 | Memory Pools | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-14/day-2-memory-pools.ipynb) |
+| 3 | Async Allocation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-14/day-3-async-allocation.ipynb) |
+| 4 | Fragmentation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-14/day-4-fragmentation.ipynb) |
+
+---
+
+## 🔄 Week 15: Advanced Synchronization
+
+| Day | Topic | Open in Colab |
+|-----|-------|---------------|
+| 1 | Grid-Wide Sync | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-15/day-1-grid-sync.ipynb) |
+| 2 | Programmatic Launch | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-15/day-2-programmatic-launch.ipynb) |
+| 3 | Cooperative Kernels | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-15/day-3-cooperative-kernels.ipynb) |
+| 4 | Sync Patterns | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-15/day-4-sync-patterns.ipynb) |
+
+---
+
+## 🎓 Week 16: Final Capstone
+
+| Day | Topic | Open in Colab |
+|-----|-------|---------------|
+| 1 | Integration Project | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-16/day-1-integration.ipynb) |
+| 2 | Real-World Optimization | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-16/day-2-real-world.ipynb) |
+| 3 | Best Practices | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-16/day-3-best-practices.ipynb) |
+| 4 | Final Project | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sdodlapati3/cuda-lab/blob/main/learning-path/week-16/day-4-final-project.ipynb) |
+
+---
+
 ## 🛠️ Setup Instructions
 
 ### Google Colab (Recommended)
@@ -206,18 +288,36 @@ jupyter notebook
 
 | Week | Status | Completed Date | Notes |
 |------|--------|----------------|-------|
-| Week 1 | ⬜ Not Started | | |
-| Week 2 | ⬜ Not Started | | |
-| Week 3 | ⬜ Not Started | | |
-| Week 4 | ⬜ Not Started | | |
-| Week 5 | ⬜ Not Started | | |
-| Week 6 | ⬜ Not Started | | |
-| Week 7 | ⬜ Not Started | | |
-| Week 8 | ⬜ Not Started | | |
-| Week 9 | ⬜ Not Started | | |
-| Week 10 | ⬜ Not Started | | |
-| Week 11 | ⬜ Not Started | | |
-| Week 12 | ⬜ Not Started | | |
+| Week 1 | ⬜ Not Started | | GPU Fundamentals |
+| Week 2 | ⬜ Not Started | | Memory Hierarchy |
+| Week 3 | ⬜ Not Started | | Parallel Patterns I |
+| Week 4 | ⬜ Not Started | | Parallel Patterns II |
+| Week 5 | ⬜ Not Started | | Scan Algorithms |
+| Week 6 | ⬜ Not Started | | Matrix Operations |
+| Week 7 | ⬜ Not Started | | Occupancy & Resources |
+| Week 8 | ⬜ Not Started | | Profiling & Analysis |
+| Week 9 | ⬜ Not Started | | CUDA Streams |
+| Week 10 | ⬜ Not Started | | CUDA Graphs |
+| Week 11 | ⬜ Not Started | | Advanced Features |
+| Week 12 | ⬜ Not Started | | Multi-GPU & Capstone |
+| Week 13 | ⬜ Not Started | | Unified Memory |
+| Week 14 | ⬜ Not Started | | Memory Management |
+| Week 15 | ⬜ Not Started | | Advanced Sync |
+| Week 16 | ⬜ Not Started | | Final Capstone |
+
+---
+
+## 🛠️ Practice Exercises
+
+Hands-on coding exercises to reinforce each week's concepts:
+
+| Directory | Focus | Exercises |
+|-----------|-------|-----------|
+| [01-foundations](../practice/01-foundations/) | Weeks 1-3 | Device query, Hello GPU |
+| [02-memory](../practice/02-memory/) | Week 2 | Coalescing, Shared memory, Bank conflicts, Transpose |
+| [03-parallel](../practice/03-parallel/) | Weeks 4-5 | Reduction, Warp primitives, Scan, Histogram |
+| [04-optimization](../practice/04-optimization/) | Weeks 7-9 | Occupancy, Streams, Events |
+| [05-advanced](../practice/05-advanced/) | Weeks 10-16 | Graphs, Unified memory, Integration |
 
 ---
 
