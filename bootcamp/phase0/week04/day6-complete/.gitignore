@@ -1,0 +1,41 @@
+# Build directories
+build/
+cmake-build-*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.exe
+
+# CUDA compiled
+*.cubin
+*.fatbin
+*.ptx
+
+# Editor backups
+*~
+\#*\#
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Profiler outputs
+*.nsys-rep
+*.ncu-rep
+*.qdrep
+*.sqlite
+
+# Logs
+*.log
