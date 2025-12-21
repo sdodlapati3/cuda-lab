@@ -265,66 +265,128 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 3: Advanced Primitives & Multi-Block (Weeks 13-18)
+### Phase 3: Production Patterns (Weeks 13-16) ✅ COMPLETE
 
-**Goal:** Master multi-block algorithms and advanced patterns.
+**Goal:** Master production-ready CUDA patterns: warp-level primitives, CUDA libraries, kernel fusion, and memory management.
 
-> **Note:** Basic warp primitives, scan, and histogram were covered in Phase 1 (Weeks 7-8). Phase 3 focuses on **advanced** versions and **multi-block** coordination.
+**📁 [Phase 3 Materials →](phase3/README.md)**
 
-**Library-First Checkpoint:** Before implementing, verify CUB can't do it better. See [library-first-guide.md](phase0/library-first-guide.md).
+**Library-First Checkpoint:** Before writing custom kernels, verify CUB/cuBLAS can't do it better. See [library-first-guide.md](phase0/library-first-guide.md).
 
-#### Week 13-14: Multi-Block Algorithms
-- [ ] Decoupled look-back for scan (single-pass)
-- [ ] Multi-block reduction without atomics
-- [ ] Block-level communication patterns
-- [ ] Persistent kernels
+#### Week 13: Warp-Level Programming ✅
+- [x] Warp fundamentals (SIMT model, divergence)
+- [x] Shuffle instructions (`__shfl_sync`, up, down, xor)
+- [x] Warp reductions (sum, max, min without shared memory)
+- [x] Warp scans (inclusive/exclusive prefix sums)
+- [x] Vote functions (`__ballot_sync`, `__any_sync`, `__all_sync`)
+- [x] Warp-level patterns (building blocks, dot product)
 
-#### Week 15-16: Advanced Scan Applications
-- [ ] Radix sort (using scan)
-- [ ] Stream compaction optimizations
-- [ ] Unique/run-length encoding
-- [ ] **Benchmark against CUB::DeviceRadixSort**
+#### Week 14: CUDA Libraries ✅
+- [x] cuBLAS basics (AXPY, DOT, GEMM)
+- [x] cuBLAS advanced (batched ops, tensor cores)
+- [x] CUB primitives (DeviceReduce, DeviceScan, DeviceSort)
+- [x] CUB advanced (BlockReduce, WarpReduce, custom ops)
+- [x] Thrust (device_vector, STL-like algorithms)
+- [x] Library selection (decision framework, benchmarks)
 
-#### Week 17-18: Segmented Operations
-- [ ] Segmented reduction
-- [ ] Segmented scan
-- [ ] Sparse matrix operations (SpMV)
-- [ ] **Benchmark against cuSPARSE**
+#### Week 15: Kernel Fusion ✅
+- [x] Fusion basics (why fuse, launch overhead, memory traffic)
+- [x] Element-wise fusion (chained activations, GELU)
+- [x] Reduction fusion (transform+reduce, softmax)
+- [x] Tiled fusion (MatMul+bias+ReLU)
+- [x] Producer-consumer patterns (register handoff, pipelines)
+- [x] Fusion strategies (when to fuse, anti-patterns)
 
-**Gate:** Multi-block algorithms without excessive synchronization.
+#### Week 16: Memory Management ✅
+- [x] Memory pools (cudaMallocAsync, stream-ordered)
+- [x] Pinned memory (cudaMallocHost, async transfers)
+- [x] Zero-copy memory (mapped host memory, UVA)
+- [x] Memory compaction (fragmentation, slab allocators)
+- [x] Large data patterns (chunking, double/triple buffering)
+- [x] Memory best practices (RAII, monitoring)
+
+**Gate:** You can select between libraries and custom code, fuse kernels to reduce memory traffic.
 
 **Deliverables:**
-- [ ] Single-pass scan with decoupled look-back
-- [ ] Radix sort comparison vs CUB/Thrust
-- [ ] SpMV implementation with performance analysis
+- [x] Warp shuffle-based reduction beating shared memory version
+- [x] cuBLAS/CUB integration with proper error handling
+- [x] Fused kernel showing 2x+ speedup over separate kernels
 
 ---
 
-### Phase 4: GEMM Deep Dive (Weeks 19-26)
+### Phase 4: Domain Applications (Weeks 17-20)
+
+**Goal:** Apply CUDA skills to real-world domains: image processing, AI inference, physics simulation.
+
+**📁 [Phase 4 Materials →](phase4/README.md)** *(in progress)*
+
+#### Week 17: Image Processing
+- [ ] Image convolution kernels (naive → tiled)
+- [ ] Separable filters (2D → 1D + 1D)
+- [ ] Histogram computation and equalization
+- [ ] Image resizing (bilinear, bicubic interpolation)
+- [ ] Edge detection (Sobel, Canny)
+- [ ] NPP library comparison
+
+#### Week 18: AI Inference Optimization
+- [ ] Model loading and weight management
+- [ ] Batched inference patterns
+- [ ] Quantization (FP16, INT8 basics)
+- [ ] Layer fusion for inference
+- [ ] Memory planning and reuse
+- [ ] Tokens/sec benchmarking
+
+#### Week 19: Physics Simulation
+- [ ] N-body simulation (naive → optimized)
+- [ ] Particle systems
+- [ ] Spatial data structures (grids, BVH)
+- [ ] Collision detection
+- [ ] Fluid simulation basics
+- [ ] Real-time constraints
+
+#### Week 20: Integration & Capstone
+- [ ] Python bindings (pybind11, ctypes)
+- [ ] Multi-GPU data parallelism
+- [ ] Performance profiling workflow
+- [ ] End-to-end application
+- [ ] Documentation and packaging
+- [ ] Portfolio presentation
+
+**Gate:** Complete end-to-end application demonstrating all Phase 1-4 skills.
+
+**Deliverables:**
+- [ ] Image processing pipeline with 10x+ CPU speedup
+- [ ] Inference engine for simple model
+- [ ] Physics simulation at real-time rates
+- [ ] Capstone project with benchmarks and documentation
+
+---
+
+### Phase 5: GEMM Deep Dive (Weeks 21-28)
 
 **Goal:** Understand the king of ML compute. Approach cuBLAS-level thinking.
 
 **Library-First Checkpoint:** Always benchmark against cuBLAS first. Custom GEMM only for fusion.
 
-#### Week 19-20: Naive to Tiled
+#### Week 21-22: Naive to Tiled
 - [ ] Naive matmul (baseline) + **cuBLAS comparison**
 - [ ] Tiled matmul with shared memory
 - [ ] Tile size selection and occupancy tradeoffs
 - [ ] Measuring achieved TFLOPS
 
-#### Week 21-22: Advanced Tiling
+#### Week 23-24: Advanced Tiling
 - [ ] Double buffering (hide memory latency)
 - [ ] Register tiling (maximize compute per load)
 - [ ] Vectorized loads (float4)
 - [ ] Loop unrolling strategies
 
-#### Week 23-24: Tensor Cores
+#### Week 25-26: Tensor Cores
 - [ ] WMMA API (conceptual understanding)
 - [ ] MMA instructions (PTX level, optional)
 - [ ] Mixed precision (FP16 compute, FP32 accumulate)
 - [ ] When tensor cores win vs regular CUDA cores
 
-#### Week 25-26: CUTLASS Introduction
+#### Week 27-28: CUTLASS Introduction
 - [ ] CUTLASS architecture: Tile, Epilogue, Mainloop
 - [ ] Using CUTLASS as a library
 - [ ] Understanding CUTLASS template parameters
@@ -339,39 +401,39 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 5: Deep Learning Kernels (Weeks 27-36)
+### Phase 6: Deep Learning Kernels (Weeks 29-38)
 
 **Goal:** Build the primitives that make transformers and modern nets fast.
 
 **Library-First Checkpoint:** Check cuDNN first. Custom only for fusion or novel algorithms.
 
-#### Week 27-28: Softmax
+#### Week 29-30: Softmax
 - [ ] Numerical stability (max subtraction)
 - [ ] Online softmax (single pass)
 - [ ] Memory traffic analysis
 - [ ] Fused softmax (no intermediate storage)
 - [ ] **Benchmark vs cuDNN softmax**
 
-#### Week 29-30: LayerNorm / RMSNorm
+#### Week 31-32: LayerNorm / RMSNorm
 - [ ] Mean and variance computation
 - [ ] Welford's online algorithm
 - [ ] Forward pass optimization
 - [ ] Backward pass (gradient computation)
 - [ ] **Benchmark vs cuDNN layer normalization**
 
-#### Week 31-32: Attention Building Blocks
+#### Week 33-34: Attention Building Blocks
 - [ ] QK^T computation (batched GEMM)
 - [ ] Masking (causal, padding)
 - [ ] Softmax over attention scores
 - [ ] PV computation
 
-#### Week 33-34: Kernel Fusion Strategies
+#### Week 35-36: Kernel Fusion Strategies
 - [ ] Fused bias + dropout + residual
 - [ ] Fused attention patterns
 - [ ] Memory traffic reduction analysis
 - [ ] When fusion helps vs hurts
 
-#### Week 35-36: FlashAttention Study
+#### Week 37-38: FlashAttention Study
 - [ ] IO-aware algorithm design
 - [ ] Tiling strategy for attention
 - [ ] Online softmax in attention context
@@ -386,29 +448,29 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 6: ML Stack Integration (Weeks 37-44)
+### Phase 7: ML Stack Integration (Weeks 39-46)
 
 **Goal:** Ship kernels as usable components in real frameworks.
 
-#### Week 37-38: PyTorch C++ Extensions
+#### Week 39-40: PyTorch C++ Extensions
 - [ ] Extension setup (setup.py, CMake)
 - [ ] Tensor accessors and data types
 - [ ] Error handling and checks
 - [ ] Building and installing
 
-#### Week 39-40: Autograd Integration
+#### Week 41-42: Autograd Integration
 - [ ] Forward function implementation
 - [ ] Backward function implementation
 - [ ] Gradient checking and validation
 - [ ] Handling edge cases (zero-size tensors, etc.)
 
-#### Week 41-42: Triton
+#### Week 43-44: Triton
 - [ ] Triton programming model
 - [ ] Converting CUDA kernels to Triton
 - [ ] Auto-tuning with Triton
 - [ ] **When Triton beats hand-written CUDA** (and vice versa)
 
-#### Week 43-44: torch.compile / Inductor
+#### Week 45-46: torch.compile / Inductor
 - [ ] How Inductor generates kernels
 - [ ] Fusion analysis
 - [ ] Custom backends
@@ -423,64 +485,27 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 7: Multi-GPU & Systems (Weeks 45-50)
+### Phase 8: Multi-GPU & Systems (Weeks 47-52)
 
 **Goal:** Remove bottlenecks that appear at scale.
 
-#### Week 45-46: NCCL Fundamentals
+#### Week 47-48: NCCL Fundamentals
 - [ ] All-reduce, reduce-scatter, all-gather
 - [ ] Ring vs tree algorithms
 - [ ] Bandwidth and latency characteristics
 - [ ] NCCL debugging
 
-#### Week 47-48: Overlap Strategies
+#### Week 49-50: Overlap Strategies
 - [ ] Compute/communication overlap
 - [ ] Streams and events for coordination
 - [ ] Gradient bucketing and fusion
 - [ ] Pipeline parallelism concepts
 
-#### Week 49-50: CUDA Graphs & Memory Management
+#### Week 51-52: Capstones & Portfolio
 - [ ] CUDA graph capture and replay
-- [ ] When graphs help (inference, repetitive training)
-- [ ] Memory allocator behavior
-- [ ] Fragmentation and pool strategies
-
-**Gate:** Explain why scaling plateaus and how to attack it.
-
-**Deliverables:**
-- [ ] Multi-GPU benchmark: all-reduce scaling curve
-- [ ] Overlap demonstration: compute + comm speedup
-- [ ] CUDA graph capture for training step
-
----
-
-### Phase 8: Capstones (Weeks 51-52)
-
-**Choose 2 major + 1 "sharp tool" capstone:**
-
-#### Capstone A: Transformer Kernel Pack
-- [ ] Fused softmax (optimized)
-- [ ] LayerNorm (forward + backward)
-- [ ] Fused MLP (GEMM + bias + activation)
-- [ ] PyTorch extension with benchmarks
-- [ ] Documentation and usage examples
-
-#### Capstone B: Inference Microengine
-- [ ] CUDA graphs for steady-state inference
-- [ ] Memory planning and reuse
-- [ ] Tokens/sec benchmarking
-- [ ] Comparison with baseline PyTorch
-
-#### Capstone C: Benchmark & Evaluation Framework
-- [ ] CUDA vs Triton vs PyTorch comparison
-- [ ] Latency vs throughput analysis
-- [ ] Multi-GPU support (T4/A100/H100)
-- [ ] Automated regression detection
-
-**Final Output:**
-- [ ] Public repository with clean code
-- [ ] Write-up per capstone (performance plots, lessons learned)
-- [ ] Blog post or video explaining your work
+- [ ] Complete 2-3 portfolio projects
+- [ ] Documentation and writeups
+- [ ] Performance regression suite
 
 ---
 
@@ -491,12 +516,12 @@ These are your **spine**—not optional reading:
 | 0 | 1-4 | Foundation: Build, Debug, Profile, Templates |
 | 1 | 5-8 | CUDA Fundamentals: Execution & Memory Model |
 | 2 | 9-12 | Performance: Roofline, Occupancy, Profiling |
-| 3 | 13-18 | Primitives: Warps, Scan, Histogram |
-| 4 | 19-26 | GEMM: Tiling, Tensor Cores, CUTLASS |
-| 5 | 27-36 | DL Kernels: Softmax, LayerNorm, Attention |
-| 6 | 37-44 | ML Stack: PyTorch, Triton, torch.compile |
-| 7 | 45-50 | Systems: NCCL, Overlap, CUDA Graphs |
-| 8 | 51-52 | Capstones: Portfolio Projects |
+| 3 | 13-16 | Production: Warps, Libraries, Fusion, Memory |
+| 4 | 17-20 | Applications: Image, AI Inference, Physics |
+| 5 | 21-28 | GEMM: Tiling, Tensor Cores, CUTLASS |
+| 6 | 29-38 | DL Kernels: Softmax, LayerNorm, Attention |
+| 7 | 39-46 | ML Stack: PyTorch, Triton, torch.compile |
+| 8 | 47-52 | Systems: NCCL, Multi-GPU, Capstones |
 
 ---
 

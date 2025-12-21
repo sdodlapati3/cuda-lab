@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+project(inference_pipeline CUDA CXX)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(inference_pipeline inference_pipeline.cu)
+target_link_libraries(inference_pipeline PRIVATE CUDA::cublas)
+target_compile_options(inference_pipeline PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-O3 --use_fast_math -lineinfo>)

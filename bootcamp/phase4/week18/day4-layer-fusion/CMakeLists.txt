@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+project(layer_fusion CUDA CXX)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(layer_fusion layer_fusion.cu)
+target_link_libraries(layer_fusion PRIVATE CUDA::cublas)
+target_compile_options(layer_fusion PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-O3 --use_fast_math -lineinfo>)
