@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(week28_day1 CUDA CXX)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+add_executable(cutlass_architecture cutlass_architecture.cu)
+# Note: Requires CUTLASS headers (git clone https://github.com/NVIDIA/cutlass)
+# target_include_directories(cutlass_architecture PRIVATE /path/to/cutlass/include)

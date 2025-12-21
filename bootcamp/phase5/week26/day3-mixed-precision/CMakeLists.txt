@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(week26_day3 CUDA)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(mixed_precision mixed_precision.cu)
+target_link_libraries(mixed_precision CUDA::cublas)

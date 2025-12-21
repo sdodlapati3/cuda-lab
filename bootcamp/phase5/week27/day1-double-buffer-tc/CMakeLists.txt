@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(week27_day1 CUDA)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(double_buffer_tc double_buffer_tc.cu)
+target_link_libraries(double_buffer_tc CUDA::cublas)

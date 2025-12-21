@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(week26_day5 CUDA)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(tc_benchmark tc_benchmark.cu)
+target_link_libraries(tc_benchmark CUDA::cublas)

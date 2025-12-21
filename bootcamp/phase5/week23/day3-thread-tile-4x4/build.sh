@@ -1,0 +1,5 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+mkdir -p build && cd build
+cmake .. -G Ninja && ninja
+./thread_tile_4x4

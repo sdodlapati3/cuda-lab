@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.18)
+project(week28_day2 CUDA CXX)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(basic_cutlass_gemm basic_cutlass_gemm.cu)
+target_link_libraries(basic_cutlass_gemm CUDA::cublas)
+# target_include_directories(basic_cutlass_gemm PRIVATE /path/to/cutlass/include)

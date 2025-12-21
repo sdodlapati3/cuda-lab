@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+project(thread_tile_2x2 CUDA CXX)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(thread_tile_2x2 thread_tile_2x2.cu)
+target_link_libraries(thread_tile_2x2 CUDA::cublas)
+target_compile_options(thread_tile_2x2 PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-O3 --ptxas-options=-v>)

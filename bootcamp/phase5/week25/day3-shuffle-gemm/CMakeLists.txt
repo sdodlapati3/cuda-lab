@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(week25_day3 CUDA)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(shuffle_gemm shuffle_gemm.cu)
+target_link_libraries(shuffle_gemm CUDA::cublas)
