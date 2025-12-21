@@ -226,42 +226,42 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 2: Performance Mental Models (Weeks 9-12)
+### Phase 2: Performance Mental Models (Weeks 9-12) ✅ COMPLETE
 
 **Goal:** Measure and optimize with intent.
 
-**📁 [Phase 2 Materials →](phase2/README.md)** *(in progress)*
+**📁 [Phase 2 Materials →](phase2/README.md)**
 
-#### Week 9: Roofline Model
-- [ ] Arithmetic intensity calculation
-- [ ] Memory bandwidth vs compute throughput
-- [ ] Plotting your kernels on the roofline
-- [ ] Identifying memory-bound vs compute-bound
+#### Week 9: Roofline Model ✅
+- [x] Arithmetic intensity calculation
+- [x] Memory bandwidth vs compute throughput
+- [x] Plotting your kernels on the roofline
+- [x] Identifying memory-bound vs compute-bound
 
-#### Week 10: Occupancy Deep Dive
-- [ ] Theoretical vs achieved occupancy
-- [ ] Why high occupancy ≠ high performance
-- [ ] Register usage and shared memory tradeoffs
-- [ ] Launch configuration experiments
+#### Week 10: Occupancy Deep Dive ✅
+- [x] Theoretical vs achieved occupancy
+- [x] Why high occupancy ≠ high performance
+- [x] Register usage and shared memory tradeoffs
+- [x] Launch configuration experiments
 
-#### Week 11: Profiling Mastery
-- [ ] Nsight Compute: metrics that matter
-- [ ] Nsight Systems: timeline analysis
-- [ ] Identifying stalls, low utilization, memory issues
-- [ ] Profiling-driven optimization workflow
+#### Week 11: Profiling Mastery ✅
+- [x] Nsight Compute: metrics that matter
+- [x] Nsight Systems: timeline analysis
+- [x] Identifying stalls, low utilization, memory issues
+- [x] Profiling-driven optimization workflow
 
-#### Week 12: Latency Hiding
-- [ ] Instruction-level parallelism
-- [ ] Memory-level parallelism
-- [ ] Kernel launch overhead
-- [ ] When fusion matters (and when it doesn't)
+#### Week 12: Latency Hiding ✅
+- [x] Instruction-level parallelism
+- [x] Memory-level parallelism
+- [x] Kernel launch overhead
+- [x] When fusion matters (and when it doesn't)
 
 **Gate:** Reduction and transpose hit meaningful fraction of peak bandwidth.
 
 **Deliverables:**
-- [ ] Roofline plot of all Phase 1 kernels
-- [ ] Optimization report: before/after with profiler evidence
-- [ ] Blog post: "What I Learned About GPU Performance"
+- [x] Roofline plot of all Phase 1 kernels
+- [x] Optimization report: before/after with profiler evidence
+- [x] Blog post: "What I Learned About GPU Performance"
 
 ---
 
@@ -314,130 +314,168 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 4: Domain Applications (Weeks 17-20)
+### Phase 4: Domain Applications (Weeks 17-20) ✅ COMPLETE
 
 **Goal:** Apply CUDA skills to real-world domains: image processing, AI inference, physics simulation.
 
-**📁 [Phase 4 Materials →](phase4/README.md)** *(in progress)*
+**📁 [Phase 4 Materials →](phase4/README.md)**
 
-#### Week 17: Image Processing
-- [ ] Image convolution kernels (naive → tiled)
-- [ ] Separable filters (2D → 1D + 1D)
-- [ ] Histogram computation and equalization
-- [ ] Image resizing (bilinear, bicubic interpolation)
-- [ ] Edge detection (Sobel, Canny)
-- [ ] NPP library comparison
+#### Week 17: Image Processing ✅
+- [x] Image convolution kernels (naive → tiled)
+- [x] Separable filters (2D → 1D + 1D)
+- [x] Histogram computation and equalization
+- [x] Image resizing (bilinear, bicubic interpolation)
+- [x] Edge detection (Sobel, Canny)
+- [x] NPP library comparison
 
-#### Week 18: AI Inference Optimization
-- [ ] Model loading and weight management
-- [ ] Batched inference patterns
-- [ ] Quantization (FP16, INT8 basics)
-- [ ] Layer fusion for inference
-- [ ] Memory planning and reuse
-- [ ] Tokens/sec benchmarking
+#### Week 18: AI Inference Optimization ✅
+- [x] Model loading and weight management
+- [x] Batched inference patterns
+- [x] Quantization (FP16, INT8 basics)
+- [x] Layer fusion for inference
+- [x] Memory planning and reuse
+- [x] Tokens/sec benchmarking
 
-#### Week 19: Physics Simulation
-- [ ] N-body simulation (naive → optimized)
-- [ ] Particle systems
-- [ ] Spatial data structures (grids, BVH)
-- [ ] Collision detection
-- [ ] Fluid simulation basics
-- [ ] Real-time constraints
+#### Week 19: Physics Simulation ✅
+- [x] N-body simulation (naive → optimized)
+- [x] Particle systems
+- [x] Spatial data structures (grids, BVH)
+- [x] Collision detection
+- [x] Fluid simulation basics
+- [x] Real-time constraints
 
-#### Week 20: Integration & Capstone
-- [ ] Python bindings (pybind11, ctypes)
-- [ ] Multi-GPU data parallelism
-- [ ] Performance profiling workflow
-- [ ] End-to-end application
-- [ ] Documentation and packaging
-- [ ] Portfolio presentation
+#### Week 20: Integration & Capstone ✅
+- [x] Python bindings (pybind11, ctypes)
+- [x] Multi-GPU data parallelism
+- [x] Performance profiling workflow
+- [x] End-to-end application
+- [x] Documentation and packaging
+- [x] Portfolio presentation
 
 **Gate:** Complete end-to-end application demonstrating all Phase 1-4 skills.
 
 **Deliverables:**
-- [ ] Image processing pipeline with 10x+ CPU speedup
-- [ ] Inference engine for simple model
-- [ ] Physics simulation at real-time rates
-- [ ] Capstone project with benchmarks and documentation
+- [x] Image processing pipeline with 10x+ CPU speedup
+- [x] Inference engine for simple model
+- [x] Physics simulation at real-time rates
+- [x] Capstone project with benchmarks and documentation
 
 ---
 
-### Phase 5: GEMM Deep Dive (Weeks 21-28)
+### Phase 5: GEMM Deep Dive (Weeks 21-28) ✅ COMPLETE
 
 **Goal:** Understand the king of ML compute. Approach cuBLAS-level thinking.
 
+**📁 [Phase 5 Materials →](phase5/README.md)**
+
 **Library-First Checkpoint:** Always benchmark against cuBLAS first. Custom GEMM only for fusion.
 
-#### Week 21-22: Naive to Tiled
-- [ ] Naive matmul (baseline) + **cuBLAS comparison**
-- [ ] Tiled matmul with shared memory
-- [ ] Tile size selection and occupancy tradeoffs
-- [ ] Measuring achieved TFLOPS
+#### Week 21-22: Naive to Tiled ✅
+- [x] Naive matmul (baseline) + **cuBLAS comparison**
+- [x] Tiled matmul with shared memory
+- [x] Tile size selection and occupancy tradeoffs
+- [x] Measuring achieved TFLOPS
 
-#### Week 23-24: Advanced Tiling
-- [ ] Double buffering (hide memory latency)
-- [ ] Register tiling (maximize compute per load)
-- [ ] Vectorized loads (float4)
-- [ ] Loop unrolling strategies
+#### Week 23-24: Advanced Tiling ✅
+- [x] Double buffering (hide memory latency)
+- [x] Register tiling (maximize compute per load)
+- [x] Vectorized loads (float4)
+- [x] Loop unrolling strategies
 
-#### Week 25-26: Tensor Cores
-- [ ] WMMA API (conceptual understanding)
-- [ ] MMA instructions (PTX level, optional)
-- [ ] Mixed precision (FP16 compute, FP32 accumulate)
-- [ ] When tensor cores win vs regular CUDA cores
+#### Week 25-26: Tensor Cores ✅
+- [x] WMMA API (conceptual understanding)
+- [x] MMA instructions (PTX level, optional)
+- [x] Mixed precision (FP16 compute, FP32 accumulate)
+- [x] When tensor cores win vs regular CUDA cores
 
-#### Week 27-28: CUTLASS Introduction
-- [ ] CUTLASS architecture: Tile, Epilogue, Mainloop
-- [ ] Using CUTLASS as a library
-- [ ] Understanding CUTLASS template parameters
-- [ ] Epilogue fusion (bias + activation)
+#### Week 27-28: CUTLASS Introduction ✅
+- [x] CUTLASS architecture: Tile, Epilogue, Mainloop
+- [x] Using CUTLASS as a library
+- [x] Understanding CUTLASS template parameters
+- [x] Epilogue fusion (bias + activation)
 
 **Gate:** Tiled GEMM is fast enough that remaining gap to cuBLAS is explainable.
 
 **Deliverables:**
-- [ ] GEMM at >50% of cuBLAS performance
-- [ ] Performance analysis: where the remaining time goes
-- [ ] CUTLASS-based GEMM with fused epilogue
+- [x] GEMM at >50% of cuBLAS performance
+- [x] Performance analysis: where the remaining time goes
+- [x] CUTLASS-based GEMM with fused epilogue
 
 ---
 
-### Phase 6: Deep Learning Kernels (Weeks 29-38)
+### Phase 6: Deep Learning Kernels (Weeks 29-32) ✅ COMPLETE
+
+> **Note:** Condensed from 10 weeks to 4 weeks, focusing on core ML inference patterns.
 
 **Goal:** Build the primitives that make transformers and modern nets fast.
 
+**📁 [Phase 6 Materials →](phase6/README.md)**
+
+#### Week 29: Quantization Fundamentals ✅
+- [x] INT8/FP16 representation and scaling
+- [x] Symmetric vs asymmetric quantization
+- [x] Calibration methods (MinMax, Entropy, MSE)
+- [x] Quantized GEMM with cuBLAS GemmEx
+
+#### Week 30: Custom CUDA Operators ✅
+- [x] PyTorch C++/CUDA extensions
+- [x] Custom forward/backward kernels
+- [x] Fused operations (LayerNorm+GELU)
+- [x] TensorFlow custom ops
+
+#### Week 31: Inference Optimization ✅
+- [x] TensorRT engine building
+- [x] Automatic layer fusion
+- [x] Precision modes (FP32/FP16/INT8)
+- [x] Custom TensorRT plugins
+
+#### Week 32: Production Deployment ✅
+- [x] Triton Inference Server basics
+- [x] Model ensemble pipelines
+- [x] Profiling and metrics (Prometheus)
+- [x] Scaling strategies and best practices
+
+**Gate:** You can deploy optimized models in production inference systems.
+
+**Deliverables:**
+- [x] Quantization pipeline for INT8 inference
+- [x] Custom PyTorch CUDA extension
+- [x] TensorRT-optimized model deployment
+
+---
+
+### Phase 7: DL Kernels & Attention (Weeks 33-40)
+
+**Goal:** Master deep learning kernel optimization and attention mechanisms.
+
+**📁 [Phase 7 Materials →](phase7/README.md)** *(in progress)*
+
 **Library-First Checkpoint:** Check cuDNN first. Custom only for fusion or novel algorithms.
 
-#### Week 29-30: Softmax
+#### Week 33-34: Softmax & LayerNorm
 - [ ] Numerical stability (max subtraction)
 - [ ] Online softmax (single pass)
-- [ ] Memory traffic analysis
-- [ ] Fused softmax (no intermediate storage)
-- [ ] **Benchmark vs cuDNN softmax**
+- [ ] Welford's online algorithm for variance
+- [ ] LayerNorm / RMSNorm forward and backward
+- [ ] **Benchmark vs cuDNN**
 
-#### Week 31-32: LayerNorm / RMSNorm
-- [ ] Mean and variance computation
-- [ ] Welford's online algorithm
-- [ ] Forward pass optimization
-- [ ] Backward pass (gradient computation)
-- [ ] **Benchmark vs cuDNN layer normalization**
-
-#### Week 33-34: Attention Building Blocks
+#### Week 35-36: Attention Building Blocks
 - [ ] QK^T computation (batched GEMM)
 - [ ] Masking (causal, padding)
 - [ ] Softmax over attention scores
-- [ ] PV computation
-
-#### Week 35-36: Kernel Fusion Strategies
-- [ ] Fused bias + dropout + residual
-- [ ] Fused attention patterns
-- [ ] Memory traffic reduction analysis
-- [ ] When fusion helps vs hurts
+- [ ] PV computation and output projection
 
 #### Week 37-38: FlashAttention Study
 - [ ] IO-aware algorithm design
 - [ ] Tiling strategy for attention
 - [ ] Online softmax in attention context
 - [ ] Reading and understanding the paper + code
+
+#### Week 39-40: Kernel Fusion Strategies
+- [ ] Fused bias + dropout + residual
+- [ ] Fused attention patterns
+- [ ] Memory traffic reduction analysis
+- [ ] When fusion helps vs hurts
 
 **Gate:** You can explain why FlashAttention works and implement a simplified version.
 
@@ -448,80 +486,84 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 7: ML Stack Integration (Weeks 39-46)
+### Phase 8: ML Stack & Multi-GPU (Weeks 41-48)
 
-**Goal:** Ship kernels as usable components in real frameworks.
+**Goal:** Ship kernels as usable components and scale to multi-GPU systems.
 
-#### Week 39-40: PyTorch C++ Extensions
+**📁 [Phase 8 Materials →](phase8/README.md)** *(reserved for future)*
+
+#### Week 41-42: PyTorch C++ Extensions
 - [ ] Extension setup (setup.py, CMake)
 - [ ] Tensor accessors and data types
-- [ ] Error handling and checks
-- [ ] Building and installing
-
-#### Week 41-42: Autograd Integration
-- [ ] Forward function implementation
-- [ ] Backward function implementation
+- [ ] Autograd integration (forward/backward)
 - [ ] Gradient checking and validation
-- [ ] Handling edge cases (zero-size tensors, etc.)
 
-#### Week 43-44: Triton
+#### Week 43-44: Triton & torch.compile
 - [ ] Triton programming model
 - [ ] Converting CUDA kernels to Triton
-- [ ] Auto-tuning with Triton
-- [ ] **When Triton beats hand-written CUDA** (and vice versa)
-
-#### Week 45-46: torch.compile / Inductor
 - [ ] How Inductor generates kernels
-- [ ] Fusion analysis
-- [ ] Custom backends
-- [ ] When compilation fails and why
+- [ ] **When Triton beats hand-written CUDA**
 
-**Gate:** Drop your custom op into a model and measure end-to-end speedup.
-
-**Deliverables:**
-- [ ] PyTorch extension: fused LayerNorm (forward + backward)
-- [ ] Same op in Triton + performance comparison
-- [ ] Benchmark suite with regression tests
-
----
-
-### Phase 8: Multi-GPU & Systems (Weeks 47-52)
-
-**Goal:** Remove bottlenecks that appear at scale.
-
-#### Week 47-48: NCCL Fundamentals
+#### Week 45-46: NCCL Fundamentals
 - [ ] All-reduce, reduce-scatter, all-gather
 - [ ] Ring vs tree algorithms
 - [ ] Bandwidth and latency characteristics
 - [ ] NCCL debugging
 
-#### Week 49-50: Overlap Strategies
+#### Week 47-48: Multi-GPU Strategies
 - [ ] Compute/communication overlap
 - [ ] Streams and events for coordination
 - [ ] Gradient bucketing and fusion
 - [ ] Pipeline parallelism concepts
 
-#### Week 51-52: Capstones & Portfolio
+**Gate:** Drop your custom op into a model and measure end-to-end speedup at scale.
+
+**Deliverables:**
+- [ ] PyTorch extension: fused LayerNorm (forward + backward)
+- [ ] Same op in Triton + performance comparison
+- [ ] Multi-GPU scaling benchmark
+
+---
+
+### Phase 9: Capstones & Portfolio (Weeks 49-52)
+
+**Goal:** Complete portfolio-quality projects demonstrating mastery.
+
+**📁 [Capstone Materials →](capstones/README.md)** *(reserved for future)*
+
+#### Week 49-50: Capstone Projects
 - [ ] CUDA graph capture and replay
 - [ ] Complete 2-3 portfolio projects
+- [ ] End-to-end optimized inference engine
+- [ ] Custom attention implementation
+
+#### Week 51-52: Documentation & Polish
 - [ ] Documentation and writeups
 - [ ] Performance regression suite
+- [ ] Blog posts and portfolio presentation
+- [ ] Career preparation
+
+**Deliverables:**
+- [ ] 3 portfolio-quality capstone projects
+- [ ] Public GitHub with documented work
+- [ ] Technical blog posts
 
 ---
 
 ## Curriculum Summary (52 Weeks)
 
-| Phase | Weeks | Focus |
-|-------|-------|-------|
-| 0 | 1-4 | Foundation: Build, Debug, Profile, Templates |
-| 1 | 5-8 | CUDA Fundamentals: Execution & Memory Model |
-| 2 | 9-12 | Performance: Roofline, Occupancy, Profiling |
-| 3 | 13-16 | Production: Warps, Libraries, Fusion, Memory |
-| 4 | 17-20 | Applications: Image, AI Inference, Physics |
-| 5 | 21-28 | GEMM: Tiling, Tensor Cores, CUTLASS |
-| 6 | 29-38 | DL Kernels: Softmax, LayerNorm, Attention |
-| 7 | 39-46 | ML Stack: PyTorch, Triton, torch.compile |
-| 8 | 47-52 | Systems: NCCL, Multi-GPU, Capstones |
+| Phase | Weeks | Focus | Status |
+|-------|-------|-------|--------|
+| 0 | 1-4 | Foundation: Build, Debug, Profile, Templates | ✅ Complete |
+| 1 | 5-8 | CUDA Fundamentals: Execution & Memory Model | ✅ Complete |
+| 2 | 9-12 | Performance: Roofline, Occupancy, Profiling | ✅ Complete |
+| 3 | 13-16 | Production: Warps, Libraries, Fusion, Memory | ✅ Complete |
+| 4 | 17-20 | Applications: Image, AI Inference, Physics | ✅ Complete |
+| 5 | 21-28 | GEMM: Tiling, Tensor Cores, CUTLASS | ✅ Complete |
+| 6 | 29-32 | ML Inference: Quantization, TensorRT, Triton Server | ✅ Complete |
+| 7 | 33-40 | DL Kernels: Softmax, LayerNorm, Attention, FlashAttention | 🔄 In Progress |
+| 8 | 41-48 | ML Stack: PyTorch, Triton, NCCL, Multi-GPU | ⏳ Reserved |
+| 9 | 49-52 | Capstones: Portfolio Projects | ⏳ Reserved |
 
 ---
 
