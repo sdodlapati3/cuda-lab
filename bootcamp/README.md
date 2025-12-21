@@ -101,11 +101,26 @@ ml-ops-playground/
 
 ---
 
+## 📚 Core Reference Documents (Required Daily Reading)
+
+These are your **spine**—not optional reading:
+
+| Document | Purpose | Link |
+|----------|---------|------|
+| **CUDA Programming Guide** | The *what* and *how* of CUDA | [nvidia.com](https://docs.nvidia.com/cuda/cuda-c-programming-guide/) |
+| **CUDA Best Practices Guide** | The *why* and *when* of performance | [nvidia.com](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/) |
+| **Daily Reference Spine** | Maps each phase to specific doc sections | [phase0/daily-reference-spine.md](phase0/daily-reference-spine.md) |
+| **Library-First Guide** | When NOT to write custom kernels | [phase0/library-first-guide.md](phase0/library-first-guide.md) |
+
+> **Key insight:** The difference between good and great CUDA developers is that great ones read the official docs weekly.
+
+---
+
 ## Daily Cadence (Sustainable 15-Hour Structure)
 
 | Hours | Activity | Purpose |
 |-------|----------|---------|
-| 2h | Theory/Reading | CUDA model, papers, performance concepts |
+| 2h | Theory/Reading | **Official docs + papers** (not optional!) |
 | 5h | Implement Kernels | Correctness first, then optimize |
 | 2h | Profiling + Optimization | Nsight Compute/Systems, roofline thinking |
 | 2h | Expert Code Study | CUTLASS, FlashAttention, cuDNN patterns |
@@ -118,9 +133,11 @@ ml-ops-playground/
 
 ## The 12-Month Curriculum
 
-### Phase 0: Foundation (Weeks 1-2)
+### Phase 0: Foundation (Weeks 1-4)
 
-**Goal:** Build, run, profile, and debug with confidence.
+**Goal:** Build, run, profile, and debug with confidence. Profiling becomes reflex.
+
+**📁 [Phase 0 Materials →](phase0/README.md)**
 
 #### Week 1: Build System Mastery
 - [ ] CMake + ninja for CUDA projects
@@ -132,38 +149,59 @@ ml-ops-playground/
 - [ ] compute-sanitizer (race detection, memory errors)
 - [ ] cuda-gdb basics
 - [ ] Understanding error codes and async error handling
-- [ ] Nsight Systems first look
+- [ ] **Nsight Systems timeline analysis** (profiling starts here!)
+
+#### Week 3: Performance Analysis
+- [ ] Nsight Compute kernel profiling
+- [ ] Memory metrics and bandwidth analysis
+- [ ] Compute metrics and occupancy
+- [ ] Roofline model understanding
+- [ ] Bottleneck identification
+- [ ] Systematic optimization workflow
+
+#### Week 4: Project Templates
+- [ ] Single-file quick-start template
+- [ ] Library template with clean C++ API
+- [ ] Application template with CLI
+- [ ] Benchmark framework with CSV/JSON output
+- [ ] Test framework with assertions
+- [ ] Complete all-in-one template
+
+**Key Checkpoints:**
+- [ ] ✅ **Library-First**: Read [library-first-guide.md](phase0/library-first-guide.md)
+- [ ] ✅ **Daily Reference**: Read [daily-reference-spine.md](phase0/daily-reference-spine.md)
+- [ ] ✅ **Profiling Reflex**: You automatically `ncu` any kernel you write
 
 **Deliverables:**
-- [ ] Template project with clean CMakeLists.txt
+- [ ] 6 production-ready project templates
 - [ ] Benchmark harness that reports GB/s, GFLOPS, and roofline position
-- [ ] First "hello CUDA" kernel with full profiling
+- [ ] Profiler-validated "hello CUDA" kernel
 
 ---
 
-### Phase 1: CUDA Fundamentals (Weeks 3-6)
+### Phase 1: CUDA Fundamentals (Weeks 5-8)
 
 **Goal:** Write correct kernels and deeply understand the execution model.
 
-#### Week 3: Execution Model
+#### Week 5: Execution Model
 - [ ] Threads, warps, blocks, grids—mental model
 - [ ] Indexing patterns (1D, 2D, 3D)
 - [ ] Grid-stride loops for arbitrary sizes
 - [ ] When kernels actually execute (streams, events)
 
-#### Week 4: Memory Hierarchy
+#### Week 6: Memory Hierarchy
 - [ ] Global memory: bandwidth, latency, coalescing
 - [ ] Shared memory: bank conflicts, padding
 - [ ] Registers: pressure, spilling to local memory
 - [ ] Constant and texture memory (when relevant)
 
-#### Week 5: First Real Kernels
+#### Week 7: First Real Kernels
 - [ ] Vector add (trivially parallel baseline)
 - [ ] SAXPY (memory-bound pattern)
 - [ ] Elementwise ops with different layouts
 - [ ] Simple reduction (sum, max)
 
-#### Week 6: Synchronization & Hazards
+#### Week 8: Synchronization & Hazards
 - [ ] `__syncthreads()` correct usage
 - [ ] Race conditions and data hazards
 - [ ] Atomic operations (when necessary, when to avoid)
@@ -178,29 +216,29 @@ ml-ops-playground/
 
 ---
 
-### Phase 2: Performance Mental Models (Weeks 7-10)
+### Phase 2: Performance Mental Models (Weeks 9-12)
 
 **Goal:** Measure and optimize with intent.
 
-#### Week 7: Roofline Model
+#### Week 9: Roofline Model
 - [ ] Arithmetic intensity calculation
 - [ ] Memory bandwidth vs compute throughput
 - [ ] Plotting your kernels on the roofline
 - [ ] Identifying memory-bound vs compute-bound
 
-#### Week 8: Occupancy Deep Dive
+#### Week 10: Occupancy Deep Dive
 - [ ] Theoretical vs achieved occupancy
 - [ ] Why high occupancy ≠ high performance
 - [ ] Register usage and shared memory tradeoffs
 - [ ] Launch configuration experiments
 
-#### Week 9: Profiling Mastery
+#### Week 11: Profiling Mastery
 - [ ] Nsight Compute: metrics that matter
 - [ ] Nsight Systems: timeline analysis
 - [ ] Identifying stalls, low utilization, memory issues
 - [ ] Profiling-driven optimization workflow
 
-#### Week 10: Latency Hiding
+#### Week 12: Latency Hiding
 - [ ] Instruction-level parallelism
 - [ ] Memory-level parallelism
 - [ ] Kernel launch overhead
@@ -215,60 +253,66 @@ ml-ops-playground/
 
 ---
 
-### Phase 3: Core Parallel Primitives (Weeks 11-16)
+### Phase 3: Core Parallel Primitives (Weeks 13-18)
 
 **Goal:** Implement patterns that appear everywhere in GPU computing.
 
-#### Week 11-12: Warp-Level Programming
+**Library-First Checkpoint:** Before implementing, verify CUB can't do it better. See [library-first-guide.md](phase0/library-first-guide.md).
+
+#### Week 13-14: Warp-Level Programming
 - [ ] Warp shuffle instructions (`__shfl_sync`, `__shfl_down_sync`)
 - [ ] Warp-level reductions (no shared memory)
 - [ ] Warp vote functions (`__ballot_sync`, `__any_sync`)
 - [ ] Combining warp and block-level operations
 
-#### Week 13-14: Scan (Prefix Sum)
+#### Week 15-16: Scan (Prefix Sum)
 - [ ] Inclusive vs exclusive scan
 - [ ] Hillis-Steele vs Blelloch algorithms
 - [ ] Block-level scan
 - [ ] Multi-block scan with decoupled look-back
+- [ ] **Benchmark against CUB::DeviceScan**
 
-#### Week 15-16: Histograms & Advanced Atomics
+#### Week 17-18: Histograms & Advanced Atomics
 - [ ] Naive atomic histogram (and why it's slow)
 - [ ] Privatization strategies
 - [ ] Warp-aggregated atomics
 - [ ] Stream compaction (using scan)
+- [ ] **Benchmark against CUB::DeviceHistogram**
 
 **Gate:** Scan and histogram with correct performance reasoning.
 
 **Deliverables:**
 - [ ] Scan at >80% of theoretical bandwidth
-- [ ] Histogram comparison: naive vs optimized (speedup analysis)
+- [ ] Histogram comparison: naive vs optimized vs CUB (speedup analysis)
 - [ ] Written analysis of atomic contention
 
 ---
 
-### Phase 4: GEMM Deep Dive (Weeks 17-24)
+### Phase 4: GEMM Deep Dive (Weeks 19-26)
 
 **Goal:** Understand the king of ML compute. Approach cuBLAS-level thinking.
 
-#### Week 17-18: Naive to Tiled
-- [ ] Naive matmul (baseline)
+**Library-First Checkpoint:** Always benchmark against cuBLAS first. Custom GEMM only for fusion.
+
+#### Week 19-20: Naive to Tiled
+- [ ] Naive matmul (baseline) + **cuBLAS comparison**
 - [ ] Tiled matmul with shared memory
 - [ ] Tile size selection and occupancy tradeoffs
 - [ ] Measuring achieved TFLOPS
 
-#### Week 19-20: Advanced Tiling
+#### Week 21-22: Advanced Tiling
 - [ ] Double buffering (hide memory latency)
 - [ ] Register tiling (maximize compute per load)
 - [ ] Vectorized loads (float4)
 - [ ] Loop unrolling strategies
 
-#### Week 21-22: Tensor Cores
+#### Week 23-24: Tensor Cores
 - [ ] WMMA API (conceptual understanding)
 - [ ] MMA instructions (PTX level, optional)
 - [ ] Mixed precision (FP16 compute, FP32 accumulate)
 - [ ] When tensor cores win vs regular CUDA cores
 
-#### Week 23-24: CUTLASS Introduction
+#### Week 25-26: CUTLASS Introduction
 - [ ] CUTLASS architecture: Tile, Epilogue, Mainloop
 - [ ] Using CUTLASS as a library
 - [ ] Understanding CUTLASS template parameters
@@ -283,35 +327,39 @@ ml-ops-playground/
 
 ---
 
-### Phase 5: Deep Learning Kernels (Weeks 25-34)
+### Phase 5: Deep Learning Kernels (Weeks 27-36)
 
 **Goal:** Build the primitives that make transformers and modern nets fast.
 
-#### Week 25-26: Softmax
+**Library-First Checkpoint:** Check cuDNN first. Custom only for fusion or novel algorithms.
+
+#### Week 27-28: Softmax
 - [ ] Numerical stability (max subtraction)
 - [ ] Online softmax (single pass)
 - [ ] Memory traffic analysis
 - [ ] Fused softmax (no intermediate storage)
+- [ ] **Benchmark vs cuDNN softmax**
 
-#### Week 27-28: LayerNorm / RMSNorm
+#### Week 29-30: LayerNorm / RMSNorm
 - [ ] Mean and variance computation
 - [ ] Welford's online algorithm
 - [ ] Forward pass optimization
 - [ ] Backward pass (gradient computation)
+- [ ] **Benchmark vs cuDNN layer normalization**
 
-#### Week 29-30: Attention Building Blocks
+#### Week 31-32: Attention Building Blocks
 - [ ] QK^T computation (batched GEMM)
 - [ ] Masking (causal, padding)
 - [ ] Softmax over attention scores
 - [ ] PV computation
 
-#### Week 31-32: Kernel Fusion Strategies
+#### Week 33-34: Kernel Fusion Strategies
 - [ ] Fused bias + dropout + residual
 - [ ] Fused attention patterns
 - [ ] Memory traffic reduction analysis
 - [ ] When fusion helps vs hurts
 
-#### Week 33-34: FlashAttention Study
+#### Week 35-36: FlashAttention Study
 - [ ] IO-aware algorithm design
 - [ ] Tiling strategy for attention
 - [ ] Online softmax in attention context
@@ -326,29 +374,29 @@ ml-ops-playground/
 
 ---
 
-### Phase 6: ML Stack Integration (Weeks 35-42)
+### Phase 6: ML Stack Integration (Weeks 37-44)
 
 **Goal:** Ship kernels as usable components in real frameworks.
 
-#### Week 35-36: PyTorch C++ Extensions
+#### Week 37-38: PyTorch C++ Extensions
 - [ ] Extension setup (setup.py, CMake)
 - [ ] Tensor accessors and data types
 - [ ] Error handling and checks
 - [ ] Building and installing
 
-#### Week 37-38: Autograd Integration
+#### Week 39-40: Autograd Integration
 - [ ] Forward function implementation
 - [ ] Backward function implementation
 - [ ] Gradient checking and validation
 - [ ] Handling edge cases (zero-size tensors, etc.)
 
-#### Week 39-40: Triton
+#### Week 41-42: Triton
 - [ ] Triton programming model
 - [ ] Converting CUDA kernels to Triton
 - [ ] Auto-tuning with Triton
-- [ ] When Triton beats hand-written CUDA
+- [ ] **When Triton beats hand-written CUDA** (and vice versa)
 
-#### Week 41-42: torch.compile / Inductor
+#### Week 43-44: torch.compile / Inductor
 - [ ] How Inductor generates kernels
 - [ ] Fusion analysis
 - [ ] Custom backends
@@ -363,23 +411,23 @@ ml-ops-playground/
 
 ---
 
-### Phase 7: Multi-GPU & Systems (Weeks 43-48)
+### Phase 7: Multi-GPU & Systems (Weeks 45-50)
 
 **Goal:** Remove bottlenecks that appear at scale.
 
-#### Week 43-44: NCCL Fundamentals
+#### Week 45-46: NCCL Fundamentals
 - [ ] All-reduce, reduce-scatter, all-gather
 - [ ] Ring vs tree algorithms
 - [ ] Bandwidth and latency characteristics
 - [ ] NCCL debugging
 
-#### Week 45-46: Overlap Strategies
+#### Week 47-48: Overlap Strategies
 - [ ] Compute/communication overlap
 - [ ] Streams and events for coordination
 - [ ] Gradient bucketing and fusion
 - [ ] Pipeline parallelism concepts
 
-#### Week 47-48: CUDA Graphs & Memory Management
+#### Week 49-50: CUDA Graphs & Memory Management
 - [ ] CUDA graph capture and replay
 - [ ] When graphs help (inference, repetitive training)
 - [ ] Memory allocator behavior
@@ -394,7 +442,7 @@ ml-ops-playground/
 
 ---
 
-### Phase 8: Capstones (Weeks 49-52)
+### Phase 8: Capstones (Weeks 51-52)
 
 **Choose 2 major + 1 "sharp tool" capstone:**
 
@@ -421,6 +469,22 @@ ml-ops-playground/
 - [ ] Public repository with clean code
 - [ ] Write-up per capstone (performance plots, lessons learned)
 - [ ] Blog post or video explaining your work
+
+---
+
+## Curriculum Summary (52 Weeks)
+
+| Phase | Weeks | Focus |
+|-------|-------|-------|
+| 0 | 1-4 | Foundation: Build, Debug, Profile, Templates |
+| 1 | 5-8 | CUDA Fundamentals: Execution & Memory Model |
+| 2 | 9-12 | Performance: Roofline, Occupancy, Profiling |
+| 3 | 13-18 | Primitives: Warps, Scan, Histogram |
+| 4 | 19-26 | GEMM: Tiling, Tensor Cores, CUTLASS |
+| 5 | 27-36 | DL Kernels: Softmax, LayerNorm, Attention |
+| 6 | 37-44 | ML Stack: PyTorch, Triton, torch.compile |
+| 7 | 45-50 | Systems: NCCL, Overlap, CUDA Graphs |
+| 8 | 51-52 | Capstones: Portfolio Projects |
 
 ---
 
