@@ -12,6 +12,7 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 -lineinfo")
 
 add_executable(reduction reduction.cu)
 add_executable(dot_product dot_product.cu)
+add_executable(cub_reduction cub_reduction.cu)
 
 find_package(CUDAToolkit REQUIRED)
 target_link_libraries(dot_product CUDA::cublas)

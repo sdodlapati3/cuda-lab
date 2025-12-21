@@ -133,92 +133,104 @@ These are your **spine**—not optional reading:
 
 ## The 12-Month Curriculum
 
-### Phase 0: Foundation (Weeks 1-4)
+### Phase 0: Foundation (Weeks 1-4) ✅ COMPLETE
 
 **Goal:** Build, run, profile, and debug with confidence. Profiling becomes reflex.
 
-**📁 [Phase 0 Materials →](phase0/README.md)**
+**📁 [Phase 0 Materials →](phase0/README.md)** | **📝 [Checkpoint Quiz →](phase0/checkpoint-quiz.md)**
 
-#### Week 1: Build System Mastery
-- [ ] CMake + ninja for CUDA projects
-- [ ] Compiler flags: `-O3`, `-lineinfo`, `-arch=sm_XX`
-- [ ] Understanding PTX vs SASS
-- [ ] Setting up a reproducible benchmark harness
+#### Week 1: Build System Mastery ✅
+- [x] CMake + ninja for CUDA projects
+- [x] Compiler flags: `-O3`, `-lineinfo`, `-arch=sm_XX`
+- [x] Understanding PTX vs SASS
+- [x] Setting up a reproducible benchmark harness
 
-#### Week 2: Debugging Foundations
-- [ ] compute-sanitizer (race detection, memory errors)
-- [ ] cuda-gdb basics
-- [ ] Understanding error codes and async error handling
-- [ ] **Nsight Systems timeline analysis** (profiling starts here!)
+#### Week 2: Debugging Foundations ✅
+- [x] compute-sanitizer (race detection, memory errors)
+- [x] cuda-gdb basics
+- [x] Understanding error codes and async error handling
+- [x] **Nsight Systems timeline analysis** (profiling starts here!)
 
-#### Week 3: Performance Analysis
-- [ ] Nsight Compute kernel profiling
-- [ ] Memory metrics and bandwidth analysis
-- [ ] Compute metrics and occupancy
-- [ ] Roofline model understanding
-- [ ] Bottleneck identification
-- [ ] Systematic optimization workflow
+#### Week 3: Performance Analysis ✅
+- [x] Nsight Compute kernel profiling
+- [x] Memory metrics and bandwidth analysis
+- [x] Compute metrics and occupancy
+- [x] Roofline model understanding
+- [x] Bottleneck identification
+- [x] Systematic optimization workflow
 
-#### Week 4: Project Templates
-- [ ] Single-file quick-start template
-- [ ] Library template with clean C++ API
-- [ ] Application template with CLI
-- [ ] Benchmark framework with CSV/JSON output
-- [ ] Test framework with assertions
-- [ ] Complete all-in-one template
+#### Week 4: Project Templates ✅
+- [x] Single-file quick-start template
+- [x] Library template with clean C++ API
+- [x] Application template with CLI
+- [x] Benchmark framework with CSV/JSON output
+- [x] Test framework with assertions
+- [x] Complete all-in-one template
 
 **Key Checkpoints:**
-- [ ] ✅ **Library-First**: Read [library-first-guide.md](phase0/library-first-guide.md)
-- [ ] ✅ **Daily Reference**: Read [daily-reference-spine.md](phase0/daily-reference-spine.md)
-- [ ] ✅ **Profiling Reflex**: You automatically `ncu` any kernel you write
+- [x] ✅ **Library-First**: Read [library-first-guide.md](phase0/library-first-guide.md)
+- [x] ✅ **Daily Reference**: Read [daily-reference-spine.md](phase0/daily-reference-spine.md)
+- [x] ✅ **Profiling Reflex**: You automatically `ncu` any kernel you write
 
 **Deliverables:**
-- [ ] 6 production-ready project templates
-- [ ] Benchmark harness that reports GB/s, GFLOPS, and roofline position
-- [ ] Profiler-validated "hello CUDA" kernel
+- [x] 6 production-ready project templates
+- [x] Benchmark harness that reports GB/s, GFLOPS, and roofline position
+- [x] Profiler-validated "hello CUDA" kernel
 
 ---
 
-### Phase 1: CUDA Fundamentals (Weeks 5-8)
+### Phase 1: CUDA Fundamentals (Weeks 5-8) ✅ COMPLETE
 
 **Goal:** Write correct kernels and deeply understand the execution model.
 
-#### Week 5: Execution Model
-- [ ] Threads, warps, blocks, grids—mental model
-- [ ] Indexing patterns (1D, 2D, 3D)
-- [ ] Grid-stride loops for arbitrary sizes
-- [ ] When kernels actually execute (streams, events)
+**📁 [Phase 1 Materials →](phase1/README.md)** | **📝 [Checkpoint Quiz →](phase1/checkpoint-quiz.md)**
 
-#### Week 6: Memory Hierarchy
-- [ ] Global memory: bandwidth, latency, coalescing
-- [ ] Shared memory: bank conflicts, padding
-- [ ] Registers: pressure, spilling to local memory
-- [ ] Constant and texture memory (when relevant)
+#### Week 5: Execution Model ✅
+- [x] Threads, warps, blocks, grids—mental model
+- [x] Indexing patterns (1D, 2D, 3D)
+- [x] Grid-stride loops for arbitrary sizes
+- [x] When kernels actually execute (streams, events)
 
-#### Week 7: First Real Kernels
-- [ ] Vector add (trivially parallel baseline)
-- [ ] SAXPY (memory-bound pattern)
-- [ ] Elementwise ops with different layouts
-- [ ] Simple reduction (sum, max)
+#### Week 6: Memory Hierarchy ✅
+- [x] Global memory: bandwidth, latency, coalescing
+- [x] Shared memory: bank conflicts, padding
+- [x] Registers: pressure, spilling to local memory
+- [x] Constant and texture memory (when relevant)
 
-#### Week 8: Synchronization & Hazards
-- [ ] `__syncthreads()` correct usage
-- [ ] Race conditions and data hazards
-- [ ] Atomic operations (when necessary, when to avoid)
-- [ ] Matrix transpose (slow first, then improve)
+#### Week 7: First Real Kernels ✅
+- [x] Vector add (trivially parallel baseline)
+- [x] SAXPY (memory-bound pattern)
+- [x] Elementwise ops with different layouts
+- [x] Reduction (6 versions: naive → warp shuffle)
+- [x] Scan (Hillis-Steele, Blelloch, stream compaction)
+- [x] Histogram (global → shared → warp aggregate)
+- [x] Matrix multiply (naive → tiled → cuBLAS comparison)
+- [x] **CUB comparison** (library-first validation)
+
+#### Week 8: Synchronization & Hazards ✅
+- [x] `__syncthreads()` correct usage
+- [x] Warp-level primitives (shuffle, voting)
+- [x] Atomic operations (patterns, contention reduction)
+- [x] Memory fences and visibility
+- [x] Cooperative groups API
+- [x] Lock-free patterns
 
 **Gate:** You can explain *why* a kernel is slow, not just that it is.
 
 **Deliverables:**
-- [ ] Reduction kernel at >70% of memory bandwidth
-- [ ] Transpose kernel with bank conflict analysis
-- [ ] Written explanation of coalescing patterns
+- [x] Reduction kernel at >70% of memory bandwidth
+- [x] Transpose kernel with bank conflict analysis (in Week 6)
+- [x] CUB vs hand-written comparison
+
+> **Note:** Week 7-8 expanded to cover warp primitives, scan, and histogram originally planned for Phase 3. This accelerates the learning path.
 
 ---
 
 ### Phase 2: Performance Mental Models (Weeks 9-12)
 
 **Goal:** Measure and optimize with intent.
+
+**📁 [Phase 2 Materials →](phase2/README.md)** *(in progress)*
 
 #### Week 9: Roofline Model
 - [ ] Arithmetic intensity calculation
@@ -253,38 +265,38 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 3: Core Parallel Primitives (Weeks 13-18)
+### Phase 3: Advanced Primitives & Multi-Block (Weeks 13-18)
 
-**Goal:** Implement patterns that appear everywhere in GPU computing.
+**Goal:** Master multi-block algorithms and advanced patterns.
+
+> **Note:** Basic warp primitives, scan, and histogram were covered in Phase 1 (Weeks 7-8). Phase 3 focuses on **advanced** versions and **multi-block** coordination.
 
 **Library-First Checkpoint:** Before implementing, verify CUB can't do it better. See [library-first-guide.md](phase0/library-first-guide.md).
 
-#### Week 13-14: Warp-Level Programming
-- [ ] Warp shuffle instructions (`__shfl_sync`, `__shfl_down_sync`)
-- [ ] Warp-level reductions (no shared memory)
-- [ ] Warp vote functions (`__ballot_sync`, `__any_sync`)
-- [ ] Combining warp and block-level operations
+#### Week 13-14: Multi-Block Algorithms
+- [ ] Decoupled look-back for scan (single-pass)
+- [ ] Multi-block reduction without atomics
+- [ ] Block-level communication patterns
+- [ ] Persistent kernels
 
-#### Week 15-16: Scan (Prefix Sum)
-- [ ] Inclusive vs exclusive scan
-- [ ] Hillis-Steele vs Blelloch algorithms
-- [ ] Block-level scan
-- [ ] Multi-block scan with decoupled look-back
-- [ ] **Benchmark against CUB::DeviceScan**
+#### Week 15-16: Advanced Scan Applications
+- [ ] Radix sort (using scan)
+- [ ] Stream compaction optimizations
+- [ ] Unique/run-length encoding
+- [ ] **Benchmark against CUB::DeviceRadixSort**
 
-#### Week 17-18: Histograms & Advanced Atomics
-- [ ] Naive atomic histogram (and why it's slow)
-- [ ] Privatization strategies
-- [ ] Warp-aggregated atomics
-- [ ] Stream compaction (using scan)
-- [ ] **Benchmark against CUB::DeviceHistogram**
+#### Week 17-18: Segmented Operations
+- [ ] Segmented reduction
+- [ ] Segmented scan
+- [ ] Sparse matrix operations (SpMV)
+- [ ] **Benchmark against cuSPARSE**
 
-**Gate:** Scan and histogram with correct performance reasoning.
+**Gate:** Multi-block algorithms without excessive synchronization.
 
 **Deliverables:**
-- [ ] Scan at >80% of theoretical bandwidth
-- [ ] Histogram comparison: naive vs optimized vs CUB (speedup analysis)
-- [ ] Written analysis of atomic contention
+- [ ] Single-pass scan with decoupled look-back
+- [ ] Radix sort comparison vs CUB/Thrust
+- [ ] SpMV implementation with performance analysis
 
 ---
 

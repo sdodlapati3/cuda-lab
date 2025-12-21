@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.18)
+project(RegisterPressure LANGUAGES CXX CUDA)
+
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
+
+if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+    set(CMAKE_CUDA_ARCHITECTURES 80)
+endif()
+
+# Add verbose register info
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 --ptxas-options=-v")
+
+add_executable(register_analysis register_analysis.cu)
