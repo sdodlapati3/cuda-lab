@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+project(register_blocking CUDA CXX)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(register_blocking register_blocking.cu)
+target_link_libraries(register_blocking CUDA::cublas)
+target_compile_options(register_blocking PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-O3 --ptxas-options=-v>)

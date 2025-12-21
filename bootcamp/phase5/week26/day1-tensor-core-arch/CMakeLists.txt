@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.18)
+project(tensor_core_intro CUDA CXX)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_ARCHITECTURES 80)
+find_package(CUDAToolkit REQUIRED)
+add_executable(tensor_core_intro tensor_core_intro.cu)
+target_link_libraries(tensor_core_intro CUDA::cublas)
+target_compile_options(tensor_core_intro PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:-O3>)
