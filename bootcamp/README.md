@@ -444,45 +444,45 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 7: DL Kernels & Attention (Weeks 33-40)
+### Phase 7: DL Kernels & Attention (Weeks 33-40) ✅ COMPLETE
 
 **Goal:** Master deep learning kernel optimization and attention mechanisms.
 
-**📁 [Phase 7 Materials →](phase7/README.md)** *(in progress)*
+**📁 [Phase 7 Materials →](phase7/README.md)**
 
 **Library-First Checkpoint:** Check cuDNN first. Custom only for fusion or novel algorithms.
 
-#### Week 33-34: Softmax & LayerNorm
-- [ ] Numerical stability (max subtraction)
-- [ ] Online softmax (single pass)
-- [ ] Welford's online algorithm for variance
-- [ ] LayerNorm / RMSNorm forward and backward
-- [ ] **Benchmark vs cuDNN**
+#### Week 33-34: Softmax & LayerNorm ✅
+- [x] Numerical stability (max subtraction)
+- [x] Online softmax (single pass)
+- [x] Welford's online algorithm for variance
+- [x] LayerNorm / RMSNorm forward and backward
+- [x] **Benchmark vs cuDNN**
 
-#### Week 35-36: Attention Building Blocks
-- [ ] QK^T computation (batched GEMM)
-- [ ] Masking (causal, padding)
-- [ ] Softmax over attention scores
-- [ ] PV computation and output projection
+#### Week 35-36: Attention Building Blocks ✅
+- [x] QK^T computation (batched GEMM)
+- [x] Masking (causal, padding)
+- [x] Softmax over attention scores
+- [x] PV computation and output projection
 
-#### Week 37-38: FlashAttention Study
-- [ ] IO-aware algorithm design
-- [ ] Tiling strategy for attention
-- [ ] Online softmax in attention context
-- [ ] Reading and understanding the paper + code
+#### Week 37-38: FlashAttention Study ✅
+- [x] IO-aware algorithm design
+- [x] Tiling strategy for attention
+- [x] Online softmax in attention context
+- [x] Reading and understanding the paper + code
 
-#### Week 39-40: Kernel Fusion Strategies
-- [ ] Fused bias + dropout + residual
-- [ ] Fused attention patterns
-- [ ] Memory traffic reduction analysis
-- [ ] When fusion helps vs hurts
+#### Week 39-40: Kernel Fusion Strategies ✅
+- [x] Fused bias + dropout + residual
+- [x] Fused attention patterns
+- [x] Memory traffic reduction analysis
+- [x] When fusion helps vs hurts
 
-**Gate:** You can explain why FlashAttention works and implement a simplified version.
+**Gate:** ✅ You can explain why FlashAttention works and implement a simplified version.
 
 **Deliverables:**
-- [ ] Fused softmax at near-bandwidth limit
-- [ ] LayerNorm forward + backward with gradient checks
-- [ ] Attention mini-implementation with performance analysis
+- [x] Fused softmax at near-bandwidth limit
+- [x] LayerNorm forward + backward with gradient checks
+- [x] Attention mini-implementation with performance analysis
 
 ---
 
