@@ -486,42 +486,42 @@ These are your **spine**—not optional reading:
 
 ---
 
-### Phase 8: ML Stack & Multi-GPU (Weeks 41-48)
+### Phase 8: ML Stack & Multi-GPU (Weeks 41-48) ✅ COMPLETE
 
 **Goal:** Ship kernels as usable components and scale to multi-GPU systems.
 
-**📁 [Phase 8 Materials →](phase8/README.md)** *(reserved for future)*
+**📁 [Phase 8 Materials →](phase8/README.md)** | **📝 Checkpoint Quiz →** *(coming soon)*
 
-#### Week 41-42: PyTorch C++ Extensions
-- [ ] Extension setup (setup.py, CMake)
-- [ ] Tensor accessors and data types
-- [ ] Autograd integration (forward/backward)
-- [ ] Gradient checking and validation
+#### Week 41-42: PyTorch C++ Extensions ✅
+- [x] Extension setup (setup.py, CMake, JIT vs AOT)
+- [x] Tensor accessors and data types
+- [x] Autograd integration (forward/backward)
+- [x] Gradient checking and validation
 
-#### Week 43-44: Triton & torch.compile
-- [ ] Triton programming model
-- [ ] Converting CUDA kernels to Triton
-- [ ] How Inductor generates kernels
-- [ ] **When Triton beats hand-written CUDA**
+#### Week 43-44: Triton & torch.compile ✅
+- [x] Triton programming model (@triton.jit, tl.*)
+- [x] Triton softmax, matmul implementations
+- [x] How Inductor generates kernels
+- [x] **When Triton beats hand-written CUDA**
 
-#### Week 45-46: NCCL Fundamentals
-- [ ] All-reduce, reduce-scatter, all-gather
-- [ ] Ring vs tree algorithms
-- [ ] Bandwidth and latency characteristics
-- [ ] NCCL debugging
+#### Week 45-46: NCCL Fundamentals ✅
+- [x] All-reduce, reduce-scatter, all-gather
+- [x] Ring vs tree algorithms
+- [x] Bandwidth and latency characteristics
+- [x] NCCL debugging (NCCL_DEBUG, process groups)
 
-#### Week 47-48: Multi-GPU Strategies
-- [ ] Compute/communication overlap
-- [ ] Streams and events for coordination
-- [ ] Gradient bucketing and fusion
-- [ ] Pipeline parallelism concepts
+#### Week 47-48: Multi-GPU Strategies ✅
+- [x] Data, Tensor, Pipeline parallelism
+- [x] FSDP for memory efficiency
+- [x] 3D parallelism at scale
+- [x] Production distributed training patterns
 
-**Gate:** Drop your custom op into a model and measure end-to-end speedup at scale.
+**Gate:** ✅ You can build PyTorch extensions and scale training to multiple GPUs.
 
 **Deliverables:**
-- [ ] PyTorch extension: fused LayerNorm (forward + backward)
-- [ ] Same op in Triton + performance comparison
-- [ ] Multi-GPU scaling benchmark
+- [x] PyTorch extension patterns with autograd integration
+- [x] Triton kernels: softmax, matmul, fusion
+- [x] Multi-GPU patterns: DDP, FSDP, 3D parallelism
 
 ---
 
@@ -561,8 +561,8 @@ These are your **spine**—not optional reading:
 | 4 | 17-20 | Applications: Image, AI Inference, Physics | ✅ Complete |
 | 5 | 21-28 | GEMM: Tiling, Tensor Cores, CUTLASS | ✅ Complete |
 | 6 | 29-32 | ML Inference: Quantization, TensorRT, Triton Server | ✅ Complete |
-| 7 | 33-40 | DL Kernels: Softmax, LayerNorm, Attention, FlashAttention | 🔄 In Progress |
-| 8 | 41-48 | ML Stack: PyTorch, Triton, NCCL, Multi-GPU | ⏳ Reserved |
+| 7 | 33-40 | DL Kernels: Softmax, LayerNorm, Attention, FlashAttention | ✅ Complete |
+| 8 | 41-48 | ML Stack: PyTorch, Triton, NCCL, Multi-GPU | ✅ Complete |
 | 9 | 49-52 | Capstones: Portfolio Projects | ⏳ Reserved |
 
 ---
