@@ -1,5 +1,58 @@
 # CUDA Mastery Bootcamp: 12-Month Intensive
 
+---
+
+## 🚀 Quick Start & Navigation
+
+### How to Start Today
+1. **Complete the [18-Week CUDA Tutorial](../learning-path/README.md)** (or ensure you have equivalent experience).
+2. **Read these two docs:**
+    - [Daily Reference Spine](phase0/daily-reference-spine.md) (what to read each phase)
+    - [Library-First Guide](phase0/library-first-guide.md) (when NOT to write custom kernels)
+3. **Begin at [Phase 0](phase0/README.md):** Set up your build, debug, and profiling environment.
+
+### 📑 Table of Contents
+- [Quick Start & Navigation](#quick-start--navigation)
+- [What You'll Be Able to Do](#what-youll-be-able-to-do-after-12-months)
+- [Your Three Repositories](#your-three-repositories)
+- [Core Reference Documents](#core-reference-documents-required-daily-reading)
+- [Daily Cadence](#daily-cadence-sustainable-15-hour-structure)
+- [The 12-Month Curriculum](#the-12-month-curriculum)
+- [Curriculum Summary](#curriculum-summary-52-weeks)
+- [Hardware Considerations](#hardware-considerations)
+- [Recommended Reading Schedule](#recommended-reading-schedule)
+- [Advanced Topics](#advanced-topics-for-extended-study)
+- [Success Metrics](#success-metrics)
+- [Community & Resources](#community--resources)
+- [Relationship to 18-Week Tutorial](#relationship-to-18-week-tutorial)
+
+### 📋 Progress Tracker (Copy & Check Off)
+```
+- [ ] Phase 0: Foundation (Weeks 1-4)
+- [ ] Phase 1: CUDA Fundamentals (Weeks 5-8)
+- [ ] Phase 2: Performance Mental Models (Weeks 9-12)
+- [ ] Phase 3: Production Patterns (Weeks 13-16)
+- [ ] Phase 4: Applications (Weeks 17-20)
+- [ ] Phase 5: GEMM (Weeks 21-28)
+- [ ] Phase 6: ML Inference (Weeks 29-32)
+- [ ] Phase 7: DL Kernels (Weeks 33-40)
+- [ ] Phase 8: ML Stack & Multi-GPU (Weeks 41-48)
+- [ ] Phase 9: Capstones (Weeks 49-52)
+```
+
+### 📚 Where to Find What
+| Resource | Location | Purpose |
+|----------|---------|---------|
+| **Phase Guides** | `phase0/`, `phase1/`, ... | Week-by-week instructions |
+| **Reference Spine** | `phase0/daily-reference-spine.md` | Official doc mapping |
+| **Library-First Guide** | `phase0/library-first-guide.md` | When to use libraries |
+| **Starters** | `starters/` | Hands-on mini-projects |
+| **Templates** | `templates/` | Project scaffolding |
+| **Capstones** | `capstones/` | Final project specs |
+| **Checkpoint Quizzes** | `phase0/checkpoint-quiz.md`, etc. | Self-assessment |
+
+---
+
 > **Target Audience:** ML researchers and engineers committed to becoming GPU performance experts.
 > 
 > **Prerequisite:** Complete the [18-Week CUDA Tutorial](../learning-path/README.md) OR equivalent experience.
