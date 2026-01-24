@@ -35,7 +35,8 @@ class ReductionBenchmark:
         self,
         sizes: List[int] = None,
         warmup: int = 10,
-        iterations: int = 100
+        iterations: int = 100,
+        device: str = 'cuda'
     ):
         self.sizes = sizes or [2**i for i in range(10, 25)]  # 1K to 16M
         self.warmup = warmup
@@ -43,9 +44,9 @@ class ReductionBenchmark:
         self.results: Dict[str, Dict[int, float]] = {}
         
         # Device info
-        self.device = torch.device('cuda')
-        self.device_name = torch.cuda.get_device_name(0)
-        props = torch.cuda.get_device_properties(0)
+        self.device = torch.device(device)
+        self.device_name = torch.cuda.get_device_name(self.device)
+        props = torch.cuda.get_device_properties(self.device)
         self.peak_bandwidth = props.memory_clock_rate * 2 * props.memory_bus_width / 8 / 1e6  # GB/s
         
         print(f"Device: {self.device_name}")
@@ -118,6 +119,43 @@ class ReductionBenchmark:
             print("  Custom CUDA warp shuffle...")
             self.benchmark_impl("warp_shuffle", reduction_cuda.warp_shuffle_reduce)
     
+    def run_size_sweep(self, sizes: List[int] = None) -> List[Dict]:
+        """Run benchmark across sizes and return results in list format.
+        
+        Args:
+            sizes: List of sizes to benchmark. Defaults to self.sizes.
+            
+        Returns:
+            List of dicts with size, mean_ms, bandwidth_GB_s, etc.
+        """
+        sizes = sizes or self.sizes
+        results = []
+        
+        for n in sizes:
+            x = torch.randn(n, device=self.device)
+            
+            try:
+                time_ms = self.time_kernel(self.pytorch_sum, x)
+                
+                # Calculate bandwidth
+                bytes_moved = n * 4  # Input only (output is scalar)
+                bandwidth = bytes_moved / (time_ms * 1e6)  # GB/s
+                
+                results.append({
+                    'size': n,
+                    'mean_ms': time_ms,
+                    'bandwidth_GB_s': bandwidth,
+                    'pct_peak': bandwidth / self.peak_bandwidth * 100
+                })
+                
+            except Exception as e:
+                results.append({
+                    'size': n,
+                    'error': str(e)
+                })
+        
+        return results
+
     def print_results(self):
         """Print results as table."""
         if not self.results:

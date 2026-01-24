@@ -43,13 +43,13 @@ class TestFullBenchmarkSuite:
             matmul_cfg = MatMulConfig(M=1024, N=1024, K=1024)
             assert matmul_cfg.M == 1024
             
-            softmax_cfg = SoftmaxConfig(batch_size=32, seq_length=512, hidden_size=768)
-            assert softmax_cfg.hidden_size == 768
+            softmax_cfg = SoftmaxConfig(batch_size=32, seq_length=512, hidden_dim=768)
+            assert softmax_cfg.hidden_dim == 768
             
             attention_cfg = AttentionConfig(
-                batch_size=2, seq_length=1024, n_heads=8, head_dim=64
+                batch_size=2, seq_length=1024, num_heads=8, head_dim=64
             )
-            assert attention_cfg.n_heads == 8
+            assert attention_cfg.num_heads == 8
             
         except ImportError as e:
             pytest.skip(f"Benchmark modules not importable: {e}")
@@ -247,7 +247,7 @@ class TestHPCIntegration:
         """Test HPC infrastructure is complete."""
         hpc_dir = repo_root / "hpc-lab"
         
-        required_dirs = ["01-slurm", "02-checkpointing", "03-containers"]
+        required_dirs = ["01-slurm-basics", "02-checkpointing", "03-containers"]
         
         for dir_name in required_dirs:
             assert (hpc_dir / dir_name).exists(), f"Missing HPC module: {dir_name}"
@@ -290,7 +290,7 @@ class TestHPCIntegration:
     @pytest.mark.integration
     def test_slurm_template_valid(self, repo_root):
         """Test SLURM template is syntactically valid."""
-        slurm_dir = repo_root / "hpc-lab" / "01-slurm"
+        slurm_dir = repo_root / "hpc-lab" / "01-slurm-basics"
         
         # Check for SLURM templates
         templates = list(slurm_dir.glob("*.sbatch")) + list(slurm_dir.glob("*.slurm"))

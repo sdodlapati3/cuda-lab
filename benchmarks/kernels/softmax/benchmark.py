@@ -135,9 +135,9 @@ class SoftmaxBenchmark(KernelBenchmark):
         times_ms = [start_events[i].elapsed_time(end_events[i]) for i in range(iterations)]
         
         return BenchmarkResult(
-            kernel_name=kernel_fn.__name__,
-            mean_time_ms=sum(times_ms) / len(times_ms),
-            std_time_ms=torch.tensor(times_ms).std().item(),
+            name=kernel_fn.__name__,
+            time_ms=sum(times_ms) / len(times_ms),
+            time_std_ms=torch.tensor(times_ms).std().item(),
             min_time_ms=min(times_ms),
             max_time_ms=max(times_ms),
             iterations=iterations

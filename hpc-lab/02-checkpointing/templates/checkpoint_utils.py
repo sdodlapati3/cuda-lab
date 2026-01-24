@@ -101,14 +101,28 @@ class CheckpointManager:
         else:
             self.model.load_state_dict(state_dict)
     
-    def save(self, filename: str = 'checkpoint.pt', metrics: Optional[Dict] = None):
+    def save(self, filename: str = 'checkpoint.pt', metrics: Optional[Dict] = None, 
+             epoch: Optional[int] = None, loss: Optional[float] = None, **kwargs):
         """
         Save checkpoint. Only rank 0 saves in distributed setting.
         
         Args:
             filename: Checkpoint filename
             metrics: Optional metrics dict to include
+            epoch: Optional epoch number (also updates self.current_epoch)
+            loss: Optional loss value (added to metrics)
+            **kwargs: Additional values to store in checkpoint
         """
+        # Update epoch if provided
+        if epoch is not None:
+            self.current_epoch = epoch
+            
+        # Build metrics from loss if provided
+        if metrics is None:
+            metrics = {}
+        if loss is not None:
+            metrics['loss'] = loss
+            
         # Only save on rank 0
         if self.rank != 0:
             if self.is_distributed:
@@ -219,6 +233,17 @@ class CheckpointManager:
         """Load the best model checkpoint."""
         return self.load('best_model.pt')
     
+    def load_latest(self) -> Optional[int]:
+        """
+        Load the most recent checkpoint.
+        
+        Returns:
+            The epoch number if loaded successfully, None otherwise.
+        """
+        if self.auto_resume():
+            return self.current_epoch
+        return None
+
     def auto_resume(self) -> bool:
         """
         Attempt to resume from latest checkpoint.

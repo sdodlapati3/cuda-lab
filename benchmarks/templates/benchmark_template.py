@@ -28,12 +28,28 @@ from statistics import mean, stdev
 @dataclass
 class BenchmarkResult:
     """Single benchmark result."""
-    name: str
-    time_ms: float
-    time_std_ms: float
+    name: str = ""  # or kernel_name
+    time_ms: float = 0.0  # mean time (also: mean_time_ms)
+    time_std_ms: float = 0.0  # std deviation (also: std_time_ms)
     bandwidth_GB_s: Optional[float] = None
     tflops: Optional[float] = None
     percent_of_peak: Optional[float] = None
+    min_time_ms: Optional[float] = None
+    max_time_ms: Optional[float] = None
+    iterations: Optional[int] = None
+    
+    # Aliases for compatibility
+    @property
+    def kernel_name(self) -> str:
+        return self.name
+    
+    @property
+    def mean_time_ms(self) -> float:
+        return self.time_ms
+    
+    @property
+    def std_time_ms(self) -> float:
+        return self.time_std_ms
 
 
 class KernelBenchmark:
@@ -57,6 +73,7 @@ class KernelBenchmark:
     def __init__(
         self,
         name: str,
+        description: str = "",
         warmup: int = 10,
         iterations: int = 100,
         device: Optional[torch.device] = None,
@@ -64,11 +81,13 @@ class KernelBenchmark:
         """
         Args:
             name: Benchmark name
+            description: Benchmark description
             warmup: Number of warmup iterations
             iterations: Number of timed iterations
             device: CUDA device (default: current device)
         """
         self.name = name
+        self.description = description
         self.warmup = warmup
         self.iterations = iterations
         self.device = device or torch.device('cuda')
