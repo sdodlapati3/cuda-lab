@@ -1,6 +1,6 @@
-site_name: CUDA Programming Guide
-site_description: Local reference for CUDA Programming Guide
-docs_dir: cuda-programming-guide
+site_name: CUDA Lab
+site_description: Comprehensive CUDA programming curriculum with profiling and HPC modules
+docs_dir: .
 
 theme:
   name: material
@@ -12,47 +12,82 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.tabs
     - toc.integrate
     - search.suggest
     - search.highlight
 
 nav:
-  - Home: index.md
-  - 1. Introduction:
-    - CUDA Platform: 01-introduction/cuda-platform.md
-    - Hardware Implementation: 01-introduction/hardware-implementation.md
-    - Programming Model: 01-introduction/programming-model.md
-  - 2. Basics:
-    - Intro to CUDA C++: 02-basics/intro-to-cuda-cpp.md
-    - Writing CUDA Kernels: 02-basics/writing-cuda-kernels.md
-    - CUDA Memory: 02-basics/cuda-memory.md
-    - Understanding Memory: 02-basics/understanding-memory.md
-    - Asynchronous Execution: 02-basics/asynchronous-execution.md
-    - NVCC Compiler: 02-basics/nvcc.md
-  - 3. Advanced:
-    - Advanced Kernel Programming: 03-advanced/advanced-kernel-programming.md
-    - Advanced Host Programming: 03-advanced/advanced-host-programming.md
-    - Device Memory Access: 03-advanced/device-memory-access.md
-    - Performance Optimization: 03-advanced/performance-optimization.md
-    - Driver API: 03-advanced/driver-api.md
-  - 4. Special Topics:
-    - Unified Memory: 04-special-topics/unified-memory.md
-    - Multi-GPU Programming: 04-special-topics/multi-gpu-programming.md
-    - CUDA Graphs: 04-special-topics/cuda-graphs.md
-    - Dynamic Parallelism: 04-special-topics/dynamic-parallelism.md
-    - Cooperative Groups: 04-special-topics/cooperative-groups.md
-    - Stream-Ordered Memory: 04-special-topics/stream-ordered-memory-allocation.md
-    - Virtual Memory Management: 04-special-topics/virtual-memory-management.md
-    - Inter-Process Communication: 04-special-topics/inter-process-communication.md
-    - Programmatic Dependent Launch: 04-special-topics/programmatic-dependent-launch.md
-    - Error & Log Management: 04-special-topics/error-log-management.md
-    - MIG: 04-special-topics/mig.md
-  - 5. Appendices:
-    - C++ Language Extensions: 05-appendices/cpp-language-extensions.md
-    - Compute Capabilities: 05-appendices/compute-capabilities.md
-    - Warp Matrix Functions: 05-appendices/warp-matrix-functions.md
-    - Texture Fetch: 05-appendices/texture-fetch.md
-    - Environment Variables: 05-appendices/environment-variables.md
+  - Home: README.md
+  - Learning Tracks: LEARNING-TRACKS.md
+  
+  - CUDA Guide:
+    - Overview: cuda-programming-guide/index.md
+    - 1. Introduction:
+      - CUDA Platform: cuda-programming-guide/01-introduction/cuda-platform.md
+      - Hardware Implementation: cuda-programming-guide/01-introduction/hardware-implementation.md
+      - Programming Model: cuda-programming-guide/01-introduction/programming-model.md
+    - 2. Basics:
+      - Intro to CUDA C++: cuda-programming-guide/02-basics/intro-to-cuda-cpp.md
+      - Writing CUDA Kernels: cuda-programming-guide/02-basics/writing-cuda-kernels.md
+      - CUDA Memory: cuda-programming-guide/02-basics/cuda-memory.md
+      - Understanding Memory: cuda-programming-guide/02-basics/understanding-memory.md
+      - Asynchronous Execution: cuda-programming-guide/02-basics/asynchronous-execution.md
+      - NVCC Compiler: cuda-programming-guide/02-basics/nvcc.md
+    - 3. Advanced:
+      - Advanced Kernel Programming: cuda-programming-guide/03-advanced/advanced-kernel-programming.md
+      - Advanced Host Programming: cuda-programming-guide/03-advanced/advanced-host-programming.md
+      - Device Memory Access: cuda-programming-guide/03-advanced/device-memory-access.md
+      - Performance Optimization: cuda-programming-guide/03-advanced/performance-optimization.md
+      - Driver API: cuda-programming-guide/03-advanced/driver-api.md
+    - 4. Special Topics:
+      - Unified Memory: cuda-programming-guide/04-special-topics/unified-memory.md
+      - Multi-GPU Programming: cuda-programming-guide/04-special-topics/multi-gpu-programming.md
+      - CUDA Graphs: cuda-programming-guide/04-special-topics/cuda-graphs.md
+      - Dynamic Parallelism: cuda-programming-guide/04-special-topics/dynamic-parallelism.md
+      - Cooperative Groups: cuda-programming-guide/04-special-topics/cooperative-groups.md
+      - Stream-Ordered Memory: cuda-programming-guide/04-special-topics/stream-ordered-memory-allocation.md
+      - Virtual Memory Management: cuda-programming-guide/04-special-topics/virtual-memory-management.md
+      - Inter-Process Communication: cuda-programming-guide/04-special-topics/inter-process-communication.md
+      - Programmatic Dependent Launch: cuda-programming-guide/04-special-topics/programmatic-dependent-launch.md
+      - Error & Log Management: cuda-programming-guide/04-special-topics/error-log-management.md
+      - MIG: cuda-programming-guide/04-special-topics/mig.md
+    - 5. Appendices:
+      - C++ Language Extensions: cuda-programming-guide/05-appendices/cpp-language-extensions.md
+      - Compute Capabilities: cuda-programming-guide/05-appendices/compute-capabilities.md
+      - Warp Matrix Functions: cuda-programming-guide/05-appendices/warp-matrix-functions.md
+      - Texture Fetch: cuda-programming-guide/05-appendices/texture-fetch.md
+      - Environment Variables: cuda-programming-guide/05-appendices/environment-variables.md
+  
+  - Profiling Lab:
+    - Overview: profiling-lab/README.md
+    - Nsight Systems: profiling-lab/01-nsight-systems/README.md
+    - Nsight Compute: profiling-lab/02-nsight-compute/README.md
+    - PyTorch Profiler: profiling-lab/03-pytorch-profiler/README.md
+  
+  - HPC Lab:
+    - Overview: hpc-lab/README.md
+    - Slurm Basics: hpc-lab/01-slurm-basics/README.md
+    - Checkpointing: hpc-lab/02-checkpointing/README.md
+  
+  - Benchmarks:
+    - Overview: benchmarks/README.md
+  
+  - Learning Path:
+    - Overview: learning-path/README.md
+    - 14-Week Curriculum: learning-path/14-week-curriculum.md
+  
+  - Bootcamp:
+    - Overview: bootcamp/README.md
+  
+  - Reference:
+    - Quick Reference: notes/cuda-quick-reference.md
+    - HPC Reference: notes/hpc-quick-reference.md
+    - Modern GPU Ecosystem: docs/modern-gpu-ecosystem.md
+  
+  - Planning:
+    - Enhancement Plan: docs/NESAP-ALIGNED-ENHANCEMENT-PLAN.md
+    - Curriculum Enhancement: docs/CURRICULUM-ENHANCEMENT-PLAN.md
 
 markdown_extensions:
   - admonition

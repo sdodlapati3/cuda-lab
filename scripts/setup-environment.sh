@@ -1,10 +1,23 @@
 #!/bin/bash
 # Setup CUDA learning environment for ODU HPC cluster
 # Uses Python 3.12 module with crun container system
+#
+# Usage:
+#   ./scripts/setup-environment.sh           # Create/verify environment
+#   ./scripts/setup-environment.sh --force   # Recreate from scratch
 
 set -e
 
-ENV_PATH="${1:-$HOME/envs/cuda_lab}"
+# Dedicated environment for cuda-lab
+ENV_PATH="$HOME/envs/cuda-lab"
+
+# Parse arguments
+for arg in "$@"; do
+    if [ "$arg" = "--force" ] && [ -d "$ENV_PATH" ]; then
+        echo "Removing existing environment..."
+        rm -rf "$ENV_PATH"
+    fi
+done
 
 echo "=========================================="
 echo "Setting up CUDA Learning Environment"
@@ -28,7 +41,26 @@ fi
 # Install packages
 echo ""
 echo "Installing/verifying CUDA learning packages..."
-crun -p "$ENV_PATH" pip install --quiet numba numpy jupyter jupyterlab matplotlib ipywidgets
+crun -p "$ENV_PATH" pip install --quiet --upgrade pip
+
+# Core packages
+crun -p "$ENV_PATH" pip install --quiet \
+    numpy \
+    matplotlib \
+    jupyter \
+    jupyterlab \
+    ipywidgets \
+    numba \
+    scipy \
+    pandas
+
+# ML packages
+echo "Installing ML packages..."
+crun -p "$ENV_PATH" pip install --quiet torch 2>/dev/null || echo "  PyTorch: skipped (may need manual install)"
+
+# Testing packages
+echo "Installing test packages..."
+crun -p "$ENV_PATH" pip install --quiet pytest pytest-cov pytest-timeout
 
 # Verify installation
 echo ""
@@ -54,10 +86,12 @@ echo "=========================================="
 echo ""
 echo "Quick reference:"
 echo "  Load env:    module load python3"
-echo "  Run Python:  crun -p $ENV_PATH python script.py"
-echo "  Run Jupyter: crun -p $ENV_PATH jupyter lab"
+echo "  Run Python:  crun -p ~/envs/cuda-lab python script.py"
+echo "  Run pytest:  crun -p ~/envs/cuda-lab pytest tests/"
+echo "  Run Jupyter: crun -p ~/envs/cuda-lab jupyter lab"
 echo ""
-echo "To start learning on GPU:"
-echo "  1. Interactive: ./scripts/gpu-session.sh"
-echo "  2. Jupyter job: sbatch scripts/start-jupyter-gpu.sh"
+echo "Alias for convenience (add to ~/.bashrc):"
+echo "  alias cudalab='module load python3 && crun -p ~/envs/cuda-lab'"
+echo ""
+echo "Then use: cudalab python script.py"
 echo ""

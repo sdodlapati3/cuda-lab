@@ -1,6 +1,6 @@
 # CUDA Lab 🚀
 
-A personal CUDA programming learning repository with documentation and practice examples.
+A comprehensive CUDA programming learning repository for ML engineers and HPC practitioners.
 
 ## 📜 Learning Philosophy
 
@@ -20,23 +20,41 @@ This repository prioritizes **real CUDA C++ programming**:
 
 ---
 
+## 🗺️ Choose Your Learning Track
+
+See **[LEARNING-TRACKS.md](LEARNING-TRACKS.md)** for detailed guidance.
+
+| Track | Duration | Audience | Start Here |
+|-------|----------|----------|------------|
+| **Foundation** | 18 weeks | Anyone learning CUDA | [learning-path/](learning-path/README.md) |
+| **Mastery** | 52 weeks | Career GPU engineers | [bootcamp/](bootcamp/README.md) |
+| **NESAP/HPC** | 12 weeks | Scientific ML, HPC roles | [profiling-lab/](profiling-lab/) *(coming soon)* |
+
+---
+
 ## 🚀 Quick Access
 
 | Resource | Description |
 |----------|-------------|
-| 🎯 **[START HERE: Learning Path](learning-path/README.md)** | **Interactive notebooks for learning CUDA** |
-| 📅 **[12-Week Curriculum](learning-path/12-week-curriculum.md)** | Structured learning plan |
-| 📖 **[CUDA Programming Guide](cuda-programming-guide/index.md)** | Full reference documentation |
-| ⚡ **[Quick Reference Cheatsheet](notes/cuda-quick-reference.md)** | Common patterns & syntax |
+| 🎯 **[Learning Path](learning-path/README.md)** | 18-week interactive notebooks (Colab-compatible) |
+| 🏋️ **[Bootcamp](bootcamp/README.md)** | 52-week intensive mastery curriculum |
+| 📖 **[CUDA Programming Guide](cuda-programming-guide/index.md)** | Full reference documentation (v13.1) |
+| ⚡ **[Quick Reference](notes/cuda-quick-reference.md)** | Common patterns & syntax cheatsheet |
 | 🔬 **[Practice Exercises](practice/)** | Standalone CUDA C++ exercises |
+| 📊 **[Profiling Lab](profiling-lab/)** | Nsight Systems/Compute mastery *(coming soon)* |
+| 🖥️ **[HPC Lab](hpc-lab/)** | Slurm, checkpointing, containers *(coming soon)* |
 
 ---
 
 ## 🎓 Learning Path (Recommended)
 
-The **[Learning Path](learning-path/README.md)** provides interactive Jupyter notebooks that combine theory, code examples, and exercises in one place.
+---
 
-### Week 1: GPU Fundamentals (Available Now!)
+## 🎓 Learning Path (Foundation Track)
+
+The **[Learning Path](learning-path/README.md)** provides interactive Jupyter notebooks that combine theory, code examples, and exercises in one place. **18 weeks**, Colab-compatible.
+
+### Week 1: GPU Fundamentals
 | Day | Notebook | Topics |
 |-----|----------|--------|
 | 1 | [GPU Basics](learning-path/week-01/day-1-gpu-basics.ipynb) | CPU vs GPU, device query, first kernel |
@@ -45,7 +63,20 @@ The **[Learning Path](learning-path/README.md)** provides interactive Jupyter no
 | 4 | [Error Handling](learning-path/week-01/day-4-error-handling.ipynb) | Debugging, common pitfalls |
 | 5 | [Checkpoint Quiz](learning-path/week-01/checkpoint-quiz.md) | Self-assessment |
 
-See the **[12-Week Curriculum](learning-path/12-week-curriculum.md)** for the complete plan.
+See **[18-Week Curriculum](learning-path/README.md)** for the complete plan.
+
+---
+
+## 🏋️ Bootcamp (Mastery Track)
+
+The **[Bootcamp](bootcamp/README.md)** is a **52-week intensive** curriculum for ML engineers committed to becoming GPU performance experts.
+
+**Key outcomes:**
+- GEMM at >50% cuBLAS performance
+- FlashAttention understanding and implementation
+- PyTorch C++/CUDA extensions with autograd
+- Multi-GPU scaling with NCCL
+- Portfolio-quality capstone projects
 
 ---
 
@@ -61,43 +92,48 @@ See the **[12-Week Curriculum](learning-path/12-week-curriculum.md)** for the co
 | [04-special-topics](cuda-programming-guide/04-special-topics/) | 11 | Unified memory, graphs, cooperative groups, dynamic parallelism |
 | [05-appendices](cuda-programming-guide/05-appendices/) | 5 | Compute capabilities, C++ extensions, environment vars |
 
-### 🎯 Key Topics (Quick Links)
-
-| Topic | File |
-|-------|------|
-| Getting Started | [intro-to-cuda-cpp.md](cuda-programming-guide/02-basics/intro-to-cuda-cpp.md) |
-| Writing Kernels | [writing-cuda-kernels.md](cuda-programming-guide/02-basics/writing-cuda-kernels.md) |
-| Memory Hierarchy | [understanding-memory.md](cuda-programming-guide/02-basics/understanding-memory.md) |
-| Async & Streams | [asynchronous-execution.md](cuda-programming-guide/02-basics/asynchronous-execution.md) |
-| Performance | [performance-optimization.md](cuda-programming-guide/03-advanced/performance-optimization.md) |
-| Unified Memory | [unified-memory.md](cuda-programming-guide/04-special-topics/unified-memory.md) |
-| CUDA Graphs | [cuda-graphs.md](cuda-programming-guide/04-special-topics/cuda-graphs.md) |
-| Cooperative Groups | [cooperative-groups.md](cuda-programming-guide/04-special-topics/cooperative-groups.md) |
-| C++ Extensions | [cpp-language-extensions.md](cuda-programming-guide/05-appendices/cpp-language-extensions.md) |
-| Compute Caps | [compute-capabilities.md](cuda-programming-guide/05-appendices/compute-capabilities.md) |
-
 ---
 
-## 📝 Notes
-
-Your own study notes and practice plans.
-
-| File | Description |
-|------|-------------|
-| [cuda-quick-reference.md](notes/cuda-quick-reference.md) | Cheatsheet with common CUDA patterns |
-
----
-
-## 🔬 Practice
-
-Hands-on CUDA programming examples and experiments.
+## 🔬 Practice Exercises
 
 ```
 practice/
-├── hello-cuda/          # Basic CUDA setup and first kernels
-├── memory-examples/     # Memory management patterns
-├── async-examples/      # Streams, events, async execution
-└── kernel-examples/     # Various kernel implementations
+├── 01-foundations/      # Device query, first kernels
+├── 02-memory/           # Coalescing, shared memory, bank conflicts
+├── 03-parallel/         # Reduction, scan, histogram
+├── 04-optimization/     # Occupancy, streams, events
+├── 05-advanced/         # CUDA graphs, cooperative groups, CDP
+└── 06-systems/          # IPC, textures, production patterns
+```
+
+---
+
+## 📊 Profiling Lab *(Coming Soon)*
+
+Performance analysis mastery for HPC/ML roles:
+
+```
+profiling-lab/
+├── 01-nsight-systems/   # Timeline analysis, CPU-GPU overlap
+├── 02-nsight-compute/   # Kernel metrics, roofline
+├── 03-pytorch-profiler/ # torch.profiler integration
+├── 04-energy-profiling/ # Power monitoring, efficiency
+└── 05-scaling-benchmarks/  # Strong/weak scaling
+```
+
+---
+
+## 🖥️ HPC Lab *(Coming Soon)*
+
+HPC workflows for national lab and cluster environments:
+
+```
+hpc-lab/
+├── 01-slurm-basics/     # Job scripts, arrays, dependencies
+├── 02-checkpointing/    # Fault-tolerant training
+├── 03-containers/       # Singularity/Apptainer
+├── 04-filesystems/      # Lustre, GPFS, I/O patterns
+└── 05-debugging-hpc/    # Multi-node debugging
 ```
 
 ---
@@ -109,6 +145,29 @@ practice/
 - CUDA Toolkit 13.1+
 - nvcc compiler
 
+### Environment Setup (ODU HPC / NERSC)
+
+```bash
+# Set up dedicated Python environment
+./scripts/setup-environment.sh
+
+# Running Python scripts
+module load python3
+crun -p ~/envs/cuda-lab python script.py
+
+# Running tests
+crun -p ~/envs/cuda-lab pytest tests/
+
+# Running Jupyter
+crun -p ~/envs/cuda-lab jupyter lab
+```
+
+**Tip**: Add alias to your `~/.bashrc`:
+```bash
+alias cudalab='module load python3 && crun -p ~/envs/cuda-lab'
+# Then use: cudalab python script.py
+```
+
 ### Verify Installation
 ```bash
 nvcc --version
@@ -118,21 +177,40 @@ nvidia-smi
 ### View Documentation (Optional)
 ```bash
 # Install MkDocs for web-style navigation
-pip install mkdocs mkdocs-material
+crun -p ~/envs/cuda-lab pip install mkdocs mkdocs-material
 
 # Serve locally at http://localhost:8000
-mkdocs serve
+crun -p ~/envs/cuda-lab mkdocs serve
 ```
 
 ---
 
-## 🎯 Learning Path
+## 📋 Planning Documents
 
-1. [ ] Part 1: Introduction to CUDA
-2. [ ] Part 2: Programming GPUs in CUDA  
-3. [ ] Part 3: Advanced CUDA
-4. [ ] Part 4: CUDA Features
-5. [ ] Part 5: Technical Appendices
+| Document | Description |
+|----------|-------------|
+| [LEARNING-TRACKS.md](LEARNING-TRACKS.md) | Choose your learning path |
+| [docs/NESAP-ALIGNED-ENHANCEMENT-PLAN.md](docs/NESAP-ALIGNED-ENHANCEMENT-PLAN.md) | HPC/NESAP career alignment plan |
+| [docs/CURRICULUM-ENHANCEMENT-PLAN.md](docs/CURRICULUM-ENHANCEMENT-PLAN.md) | Completed curriculum updates |
+| [docs/modern-gpu-ecosystem.md](docs/modern-gpu-ecosystem.md) | When to use Triton/cuBLAS/etc. |
 
 ---
-*Happy parallel programming! 🎮*
+
+## 🎯 NESAP/HPC Skill Alignment
+
+This repository targets the following HPC/ML role competencies:
+
+| Skill Area | Coverage | Location |
+|------------|----------|----------|
+| GPU Architecture | ⭐⭐⭐⭐⭐ | learning-path/, cuda-programming-guide/ |
+| Performance Profiling | ⭐⭐⭐⭐ | profiling-lab/ *(building)* |
+| Distributed Training | ⭐⭐⭐⭐ | bootcamp/phase8 |
+| HPC Workflows | ⭐⭐⭐ | hpc-lab/ *(building)* |
+| Scientific ML | ⭐⭐ | scientific-ml/ *(planned)* |
+| PyTorch at Scale | ⭐⭐⭐⭐ | bootcamp/phase8 |
+
+See [NESAP-ALIGNED-ENHANCEMENT-PLAN.md](docs/NESAP-ALIGNED-ENHANCEMENT-PLAN.md) for the full skill gap analysis.
+
+---
+
+*Happy parallel programming! 🚀*
