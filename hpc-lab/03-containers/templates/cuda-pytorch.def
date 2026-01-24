@@ -1,0 +1,113 @@
+# cuda-pytorch.def - Singularity/Apptainer definition for PyTorch + CUDA
+#
+# Build: singularity build pytorch.sif cuda-pytorch.def
+# Run:   singularity exec --nv pytorch.sif python script.py
+#
+# Tested with: CUDA 12.1, PyTorch 2.1
+
+Bootstrap: docker
+From: nvidia/cuda:12.1.0-devel-ubuntu22.04
+
+%labels
+    Author CUDA-Lab
+    Version 1.0
+    Description PyTorch with CUDA for HPC
+
+%post
+    # Avoid interactive prompts
+    export DEBIAN_FRONTEND=noninteractive
+    
+    # Update and install system dependencies
+    apt-get update && apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-dev \
+        git \
+        wget \
+        curl \
+        vim \
+        htop \
+        && rm -rf /var/lib/apt/lists/*
+    
+    # Create symlinks for python
+    ln -sf /usr/bin/python3 /usr/bin/python
+    ln -sf /usr/bin/pip3 /usr/bin/pip
+    
+    # Upgrade pip
+    pip install --upgrade pip setuptools wheel
+    
+    # Install PyTorch with CUDA 12.1 support
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+    
+    # Install common ML libraries
+    pip install \
+        numpy \
+        scipy \
+        pandas \
+        matplotlib \
+        scikit-learn \
+        tensorboard \
+        tqdm \
+        pyyaml \
+        h5py
+    
+    # Install distributed training dependencies
+    pip install \
+        deepspeed \
+        accelerate \
+        transformers
+    
+    # Install profiling tools
+    pip install \
+        pynvml \
+        nvitop
+    
+    # Clean up pip cache
+    pip cache purge
+    rm -rf ~/.cache/pip
+
+%environment
+    # CUDA paths
+    export PATH=/usr/local/cuda/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+    
+    # Python settings
+    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONUNBUFFERED=1
+    
+    # NCCL settings for multi-node
+    export NCCL_DEBUG=WARN
+    export NCCL_IB_DISABLE=0
+
+%runscript
+    # Default action: run python
+    exec python "$@"
+
+%test
+    # Verify installation
+    python -c "import torch; print(f'PyTorch: {torch.__version__}')"
+    python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
+    python -c "import torch; print(f'CUDA version: {torch.version.cuda}')" || true
+
+%help
+    PyTorch container with CUDA support for HPC.
+    
+    Usage:
+        # Interactive shell
+        singularity shell --nv pytorch.sif
+        
+        # Run a script
+        singularity exec --nv pytorch.sif python train.py
+        
+        # Run with data mount
+        singularity exec --nv -B /scratch:/data pytorch.sif python train.py --data /data
+        
+        # In Slurm job
+        srun singularity exec --nv pytorch.sif python train.py
+    
+    Built-in packages:
+        - PyTorch 2.x with CUDA 12.1
+        - torchvision, torchaudio
+        - transformers, accelerate, deepspeed
+        - numpy, scipy, pandas, scikit-learn
+        - tensorboard, matplotlib
