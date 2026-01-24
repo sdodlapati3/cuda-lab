@@ -23,3 +23,20 @@ bin/
 
 # Logs
 *.log
+*.err
+
+# Patch files
+*.patch
+
+# Slurm job files
+slurm-*.out
+cuda-dev-*.log
+cuda-dev-*.err
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# NFS temp files
+.nfs*
