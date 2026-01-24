@@ -1,0 +1,54 @@
+{
+  "device_name": "NVIDIA A100-SXM4-80GB",
+  "compute_capability": "8.0",
+  "peak_fp32_tflops": 19.5,
+  "peak_fp16_tflops": 312,
+  "peak_tf32_tflops": 156,
+  "peak_int8_tops": 624,
+  "memory_bandwidth_GB_s": 2039,
+  "l2_cache_MB": 40,
+  "shared_memory_per_sm_KB": 164,
+  "registers_per_sm": 65536,
+  "max_threads_per_sm": 2048,
+  "num_sms": 108,
+  "tdp_watts": 400,
+  
+  "baseline_benchmarks": {
+    "reduction": {
+      "size": 16777216,
+      "pytorch_bandwidth_GB_s": 1650,
+      "peak_achieved_pct": 81
+    },
+    "matmul": {
+      "m": 4096, "n": 4096, "k": 4096,
+      "pytorch_tflops_fp32": 17.5,
+      "cublas_tflops_fp32": 18.8,
+      "peak_achieved_pct": 96
+    },
+    "softmax": {
+      "batch": 64, "seq_len": 1024, "vocab": 50257,
+      "pytorch_bandwidth_GB_s": 1580,
+      "peak_achieved_pct": 77
+    },
+    "layernorm": {
+      "batch": 64, "seq_len": 1024, "hidden": 4096,
+      "pytorch_bandwidth_GB_s": 1420,
+      "peak_achieved_pct": 70
+    }
+  },
+  
+  "scaling_benchmarks": {
+    "ddp_allreduce": {
+      "message_size_MB": 100,
+      "num_gpus": [1, 2, 4, 8],
+      "time_ms": [0, 2.1, 2.4, 3.2],
+      "bandwidth_GB_s": [0, 95, 167, 250]
+    }
+  },
+  
+  "notes": [
+    "Measurements taken with PyTorch 2.1, CUDA 12.1",
+    "All benchmarks use default precision unless specified",
+    "Results may vary with driver version and system configuration"
+  ]
+}
