@@ -27,30 +27,32 @@ class TestBenchmarkTemplate:
         from templates.benchmark_template import BenchmarkResult
         
         result = BenchmarkResult(
-            kernel_name="test_kernel",
-            mean_time_ms=1.5,
-            std_time_ms=0.2,
-            min_time_ms=1.2,
-            max_time_ms=2.0,
-            iterations=100
+            name="test_kernel",
+            time_ms=1.5,
+            time_std_ms=0.2,
+            bandwidth_GB_s=1200.0,
+            tflops=10.5,
+            percent_of_peak=80.0
         )
         
-        assert result.kernel_name == "test_kernel"
-        assert result.mean_time_ms == 1.5
-        assert result.iterations == 100
+        assert result.name == "test_kernel"
+        assert result.time_ms == 1.5
+        assert result.time_std_ms == 0.2
     
+    @pytest.mark.gpu
     @pytest.mark.smoke
-    def test_kernel_benchmark_abstract(self):
-        """Test KernelBenchmark base class."""
+    def test_kernel_benchmark_class(self, cuda_device):
+        """Test KernelBenchmark class (requires CUDA for device info)."""
         from templates.benchmark_template import KernelBenchmark
         
         benchmark = KernelBenchmark(
             name="Test Benchmark",
-            description="Test description"
+            warmup=10,
+            iterations=100
         )
         
         assert benchmark.name == "Test Benchmark"
-        assert benchmark.description == "Test description"
+        assert benchmark.warmup == 10
 
 
 class TestReductionBenchmark:
@@ -326,7 +328,7 @@ class TestHardwareBaselines:
             data = json.load(f)
         
         # Check required fields
-        assert 'gpu_name' in data
+        assert 'device_name' in data
         assert 'peak_fp32_tflops' in data
         assert 'memory_bandwidth_GB_s' in data
     
@@ -341,7 +343,7 @@ class TestHardwareBaselines:
         # A100 specs should be in known ranges
         assert 15 < data['peak_fp32_tflops'] < 25
         assert 1500 < data['memory_bandwidth_GB_s'] < 2500
-        assert 70 < data['memory_size_GB'] < 90
+        assert data['num_sms'] == 108  # A100 has 108 SMs
 
 
 class TestBenchmarkExports:
