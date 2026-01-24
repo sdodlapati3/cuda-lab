@@ -1,0 +1,9 @@
+# Test requirements for cuda-lab
+pytest>=7.0
+pytest-xdist>=3.0  # Parallel test execution
+pytest-timeout>=2.0  # Test timeouts
+pytest-cov>=4.0  # Coverage reports
+
+# Core dependencies (should be installed)
+torch>=2.0
+numpy>=1.20
