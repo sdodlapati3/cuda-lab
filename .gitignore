@@ -40,3 +40,6 @@ __pycache__/
 
 # NFS temp files
 .nfs*
+*.nsys-rep
+*.sqlite
+matmul_ncu_profile*
