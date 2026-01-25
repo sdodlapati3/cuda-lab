@@ -43,3 +43,7 @@ __pycache__/
 *.nsys-rep
 *.sqlite
 matmul_ncu_profile*
+-e 
+# Experiment outputs
+experiments/
+logs/

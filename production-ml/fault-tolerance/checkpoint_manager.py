@@ -250,6 +250,10 @@ class CheckpointManager:
                 args=(model, optimizer, scheduler, checkpoint_path, metadata, extra_state),
             )
             self.save_thread.start()
+            
+            # If this is the best model, wait for save to complete before copying
+            if is_best:
+                self.save_thread.join()
         else:
             self._save_checkpoint(model, optimizer, scheduler, checkpoint_path, metadata, extra_state)
         
