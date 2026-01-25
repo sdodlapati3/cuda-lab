@@ -264,11 +264,18 @@ nsys profile --trace=cuda,nvtx,osrt \
 ## Environment Variables
 
 ```bash
-# NCCL Configuration
-export NCCL_DEBUG=INFO                    # Debug output
-export NCCL_IB_DISABLE=0                  # Enable InfiniBand
-export NCCL_SOCKET_IFNAME=eth0            # Network interface
-export NCCL_P2P_LEVEL=NVL                 # NVLink optimization
+# NCCL Configuration for GCP Waterfield Cluster (no InfiniBand)
+export NCCL_DEBUG=INFO                    # Debug output (use WARN in production)
+export NCCL_IB_DISABLE=1                  # GCP has no InfiniBand
+export NCCL_SOCKET_IFNAME=eth0            # Use Ethernet interface
+export NCCL_SOCKET_NTHREADS=4             # More threads for socket ops
+export NCCL_NSOCKS_PERTHREAD=2            # Multiple sockets per thread
+export NCCL_BUFFSIZE=4194304              # 4MB buffer for throughput
+
+# For clusters WITH InfiniBand (AWS p4d, Azure ND, etc.):
+# export NCCL_IB_DISABLE=0                # Enable InfiniBand
+# export NCCL_NET_GDR_LEVEL=2             # GPUDirect RDMA
+# export NCCL_SOCKET_IFNAME=ib0           # InfiniBand interface
 
 # PyTorch Distributed
 export MASTER_ADDR=localhost

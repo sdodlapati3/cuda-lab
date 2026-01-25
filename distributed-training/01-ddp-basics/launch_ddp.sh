@@ -82,10 +82,12 @@ export MASTER_ADDR=\$(scontrol show hostnames \$SLURM_JOB_NODELIST | head -n 1)
 export MASTER_PORT=$MASTER_PORT
 export WORLD_SIZE=\$((SLURM_NNODES * $GPUS_PER_NODE))
 
-# NCCL settings
+# NCCL settings for GCP (no InfiniBand)
 export NCCL_DEBUG=INFO
-export NCCL_IB_DISABLE=0
-export NCCL_SOCKET_IFNAME=eth0
+export NCCL_IB_DISABLE=1           # GCP has no InfiniBand
+export NCCL_SOCKET_IFNAME=eth0     # Use Ethernet interface
+export NCCL_SOCKET_NTHREADS=4      # More threads for socket operations
+export NCCL_NSOCKS_PERTHREAD=2     # Multiple sockets per thread
 
 echo "Master: \$MASTER_ADDR:\$MASTER_PORT"
 echo "World size: \$WORLD_SIZE"

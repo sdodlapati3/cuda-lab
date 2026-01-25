@@ -52,10 +52,24 @@ echo "Master node: $MASTER_ADDR:$MASTER_PORT"
 echo "World size: $WORLD_SIZE"
 
 # NCCL settings for multi-node
+# ============================================================================
+# GCP Waterfield Cluster - No InfiniBand, uses Ethernet
+# For a3-megagpu-8g instances, GPUDirect-TCPX may be available
+# ============================================================================
 export NCCL_DEBUG=WARN
-export NCCL_IB_DISABLE=0           # Enable InfiniBand
-export NCCL_NET_GDR_LEVEL=2        # GPU Direct RDMA
-export NCCL_SOCKET_IFNAME=ib0      # Network interface (adjust for your cluster)
+export NCCL_IB_DISABLE=1           # GCP has no InfiniBand
+export NCCL_SOCKET_IFNAME=eth0     # Use Ethernet interface
+
+# Performance tuning for GCP Ethernet
+export NCCL_SOCKET_NTHREADS=4      # More threads for socket operations
+export NCCL_NSOCKS_PERTHREAD=2     # Multiple sockets per thread
+export NCCL_BUFFSIZE=4194304       # 4MB buffer for better throughput
+
+# Optional: For a3-megagpu-8g with GPUDirect-TCPX (uncomment if available)
+# export NCCL_NET_GDR_LEVEL=PIX
+# export NCCL_GPUDIRECTTCPX_UNIX_CLIENT_PREFIX=/run/tcpx
+# export NCCL_SOCKET_NTHREADS=16
+# export NCCL_NSOCKS_PERTHREAD=4
 
 # For debugging distributed issues
 # export NCCL_DEBUG=INFO

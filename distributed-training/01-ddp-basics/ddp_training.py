@@ -232,7 +232,8 @@ class DistributedTrainer:
     
     def save_checkpoint(self, model: nn.Module, optimizer: optim.Optimizer,
                        scheduler: optim.lr_scheduler._LRScheduler,
-                       epoch: int, best_acc: float, scaler: Optional[GradScaler] = None):
+                       epoch: int, best_acc: float, scaler: Optional[GradScaler] = None,
+                       is_best: bool = False):
         """Save training checkpoint (only on rank 0)."""
         if self.rank != 0:
             return
@@ -254,12 +255,13 @@ class DistributedTrainer:
         
         path = checkpoint_dir / f'checkpoint_epoch_{epoch}.pt'
         torch.save(checkpoint, path)
-        
-        # Also save as latest
-        latest_path = checkpoint_dir / 'checkpoint_latest.pt'
-        torch.save(checkpoint, latest_path)
-        
         self.log(f"Saved checkpoint to {path}")
+        
+        # Save best model separately for deployment/inference
+        if is_best:
+            best_path = checkpoint_dir / 'checkpoint_best.pt'
+            torch.save(checkpoint, best_path)
+            self.log(f"Saved best model (acc={best_acc:.2f}%) to {best_path}")
     
     def load_checkpoint(self, model: nn.Module, optimizer: optim.Optimizer,
                        scheduler: optim.lr_scheduler._LRScheduler,
@@ -482,7 +484,7 @@ class DistributedTrainer:
                 best_acc = val_metrics['accuracy']
             
             if (epoch + 1) % self.config.save_every == 0 or is_best:
-                self.save_checkpoint(model, optimizer, scheduler, epoch, best_acc, scaler)
+                self.save_checkpoint(model, optimizer, scheduler, epoch, best_acc, scaler, is_best)
         
         total_time = time.time() - start_time
         self.log(f"Training completed in {total_time / 3600:.2f} hours")

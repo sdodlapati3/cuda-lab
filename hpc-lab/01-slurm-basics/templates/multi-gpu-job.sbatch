@@ -45,10 +45,11 @@ export MASTER_ADDR=localhost
 export MASTER_PORT=29500
 export WORLD_SIZE=$SLURM_GPUS_ON_NODE
 
-# NCCL settings for better performance
+# NCCL settings for GCP (no InfiniBand)
+# Within a single node, NVLink handles GPU-to-GPU communication
 export NCCL_DEBUG=WARN
-export NCCL_IB_DISABLE=0
-export NCCL_NET_GDR_LEVEL=2
+export NCCL_IB_DISABLE=1           # GCP has no InfiniBand
+export NCCL_SOCKET_IFNAME=eth0     # Fallback to Ethernet if needed
 
 # Verify GPUs
 echo "GPU Info:"
