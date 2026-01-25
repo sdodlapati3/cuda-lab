@@ -62,26 +62,35 @@ class TestScientificMLWorkflow:
     def test_pinn_to_surrogate_workflow(self, repo_root):
         """Test complete PINN training and surrogate approximation."""
         import sys
-        sys.path.insert(0, str(repo_root))
+        pinn_path = str(repo_root / "scientific-ml" / "01-pinns" / "examples")
+        sys.path.insert(0, pinn_path)
         
         try:
-            # Test imports work
-            from bootcamp.templates.kernel_zoo.pinn_template import PINN
+            # Test imports work - use actual 1d_heat_equation PINN
+            from importlib.util import spec_from_file_location, module_from_spec
+            spec = spec_from_file_location("heat_eq", repo_root / "scientific-ml" / "01-pinns" / "examples" / "1d_heat_equation.py")
+            heat_eq = module_from_spec(spec)
+            spec.loader.exec_module(heat_eq)
+            PINN = heat_eq.PINN
             
             # Create a simple PINN
             pinn = PINN(
                 layers=[2, 32, 32, 1],
-                activation=nn.Tanh
+                activation=nn.Tanh()
             )
             
             # Simulate training data from PINN
-            x = torch.rand(100, 2)
-            y = pinn(x)
+            x = torch.rand(100, 1)
+            t = torch.rand(100, 1)
+            y = pinn(x, t)
             
             assert y.shape == (100, 1)
             
-        except ImportError:
-            pytest.skip("PINN template not available")
+        except ImportError as e:
+            pytest.skip(f"PINN template not available: {e}")
+        finally:
+            if pinn_path in sys.path:
+                sys.path.remove(pinn_path)
     
     @pytest.mark.integration
     @pytest.mark.gpu
@@ -133,16 +142,17 @@ class TestDataPipelineWorkflow:
     def test_dataloader_patterns(self, repo_root):
         """Test all dataloader patterns are consistent."""
         import sys
-        sys.path.insert(0, str(repo_root))
+        dataloader_path = str(repo_root / "data-pipelines" / "01-optimized-loading")
+        sys.path.insert(0, dataloader_path)
         
         try:
-            from data_pipelines.optimized_loading.optimized_dataloader import (
+            from optimized_dataloader import (
                 DataLoaderConfig,
                 SyntheticDataset
             )
             
             config = DataLoaderConfig()
-            dataset = SyntheticDataset(1000, (3, 224, 224), 1000)
+            dataset = SyntheticDataset(1000, (3, 224, 224))
             
             # Create optimized dataloader
             from torch.utils.data import DataLoader
@@ -159,8 +169,11 @@ class TestDataPipelineWorkflow:
             batch = next(iter(loader))
             assert len(batch) == 2
             
-        except ImportError:
-            pytest.skip("Data pipeline modules not available")
+        except ImportError as e:
+            pytest.skip(f"Data pipeline modules not available: {e}")
+        finally:
+            if dataloader_path in sys.path:
+                sys.path.remove(dataloader_path)
     
     @pytest.mark.integration
     @pytest.mark.gpu
@@ -290,9 +303,9 @@ class TestHPCIntegration:
     @pytest.mark.integration
     def test_slurm_template_valid(self, repo_root):
         """Test SLURM template is syntactically valid."""
-        slurm_dir = repo_root / "hpc-lab" / "01-slurm-basics"
+        slurm_dir = repo_root / "hpc-lab" / "01-slurm-basics" / "templates"
         
-        # Check for SLURM templates
+        # Check for SLURM templates - look in templates subdirectory
         templates = list(slurm_dir.glob("*.sbatch")) + list(slurm_dir.glob("*.slurm"))
         
         if not templates:
@@ -315,7 +328,7 @@ class TestPyTorchOptimizationIntegration:
     @pytest.mark.gpu
     def test_full_optimized_training(self, cuda_device):
         """Test fully optimized training loop."""
-        from torch.cuda.amp import autocast, GradScaler
+        from torch.amp import autocast, GradScaler
         
         # Create transformer model
         model = nn.TransformerEncoderLayer(
@@ -338,14 +351,14 @@ class TestPyTorchOptimizationIntegration:
         except RuntimeError:
             optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)
         
-        scaler = GradScaler()
+        scaler = GradScaler('cuda')
         
         # Training loop
         losses = []
         for _ in range(10):
             x = torch.randn(8, 64, 256, device=cuda_device)
             
-            with autocast(dtype=torch.float16):
+            with autocast('cuda', dtype=torch.float16):
                 output = model(x)
                 loss = output.pow(2).mean()
             
@@ -397,7 +410,7 @@ class TestCrossModuleIntegration:
     @pytest.mark.gpu
     def test_scientific_ml_with_amp(self, cuda_device):
         """Test Scientific ML model with AMP."""
-        from torch.cuda.amp import autocast, GradScaler
+        from torch.amp import autocast, GradScaler
         
         # Simple PINN-like model
         class SimplePINN(nn.Module):
@@ -416,13 +429,13 @@ class TestCrossModuleIntegration:
         
         model = SimplePINN().to(cuda_device)
         optimizer = torch.optim.Adam(model.parameters())
-        scaler = GradScaler()
+        scaler = GradScaler('cuda')
         
         # Training with AMP
         for _ in range(10):
             x = torch.rand(256, 2, device=cuda_device) * 2 - 1  # [-1, 1]
             
-            with autocast(dtype=torch.float16):
+            with autocast('cuda', dtype=torch.float16):
                 u = model(x)
                 # Simple physics loss (Laplace = 0 approximation)
                 loss = u.pow(2).mean()
@@ -437,7 +450,7 @@ class TestCrossModuleIntegration:
     @pytest.mark.gpu
     def test_end_to_end_workflow(self, cuda_device, tmp_path):
         """Test complete end-to-end workflow."""
-        from torch.cuda.amp import autocast, GradScaler
+        from torch.amp import autocast, GradScaler
         
         # 1. Create model
         model = nn.Sequential(
@@ -462,7 +475,7 @@ class TestCrossModuleIntegration:
         except RuntimeError:
             optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
         
-        scaler = GradScaler()
+        scaler = GradScaler('cuda')
         
         # 3. Create dataset
         dataset = torch.utils.data.TensorDataset(
@@ -484,7 +497,7 @@ class TestCrossModuleIntegration:
             x = x.to(cuda_device, non_blocking=True)
             y = y.to(cuda_device, non_blocking=True)
             
-            with autocast(dtype=torch.float16):
+            with autocast('cuda', dtype=torch.float16):
                 output = model(x)
                 loss = nn.functional.cross_entropy(output, y)
             

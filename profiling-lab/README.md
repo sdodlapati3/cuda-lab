@@ -90,6 +90,24 @@ This lab develops the profiling skills essential for HPC and ML performance engi
 
 ---
 
+### [05-advanced-nsight/](05-advanced-nsight/)
+**Advanced Nsight Systems Features**
+
+| Exercise | Topic | Difficulty |
+|----------|-------|------------|
+| ex01-python-backtrace | Python/C++ call stack correlation | ⭐⭐⭐ |
+| ex02-io-dataloader | I/O & DataLoader bottleneck profiling | ⭐⭐⭐ |
+| ex03-nsys-stats-cli | CLI-based analysis without GUI | ⭐⭐⭐ |
+| ex04-sqlite-analysis | SQLite export & custom queries | ⭐⭐⭐⭐ |
+| ex05-cpu-sampling | CPU sampling for hotspot detection | ⭐⭐⭐ |
+| ex06-osrt-tracing | OS runtime tracing (syscalls, I/O) | ⭐⭐⭐⭐ |
+| ex07-comparison-reports | Before/after optimization comparison | ⭐⭐⭐⭐ |
+| ex08-expert-systems | Custom expert rules & auto-analysis | ⭐⭐⭐⭐⭐ |
+
+**Key skills:** Python stack correlation, scriptable profiling, automated analysis, CI/CD integration
+
+---
+
 ## 🔧 Tool Installation
 
 ### Nsight Systems
@@ -148,13 +166,64 @@ After completing this lab, you should be able to:
 
 ---
 
+## �️ Profiling Utilities
+
+This lab includes ready-to-use profiling tools in the `utils/` directory:
+
+| Utility | Description | Use Case |
+|---------|-------------|----------|
+| [unified_profiler.py](utils/unified_profiler.py) | All-in-one profiling for any GPU configuration | Single/Multi-GPU/Multi-Node/DeepSpeed |
+| [easy_profiler.py](utils/easy_profiler.py) | Minimal-code decorators and context managers | Quick benchmarks and prototyping |
+
+### Quick Start
+
+```bash
+# Profile single GPU training
+python utils/unified_profiler.py train.py
+
+# Profile multi-GPU training
+python utils/unified_profiler.py --mode multi-gpu --gpus 4 train.py
+
+# Profile DeepSpeed training
+nsys profile -o deepspeed_trace deepspeed --num_gpus=4 train.py
+```
+
+### In Your Code
+
+```python
+from profiling_lab.utils.easy_profiler import auto_profile, GPUMonitor
+
+# Automatic profiling with decorator
+@auto_profile(warmup=3, iterations=10)
+def train_step(model, batch):
+    return model(batch)
+
+# GPU monitoring context manager
+with GPUMonitor() as monitor:
+    for batch in dataloader:
+        train_step(batch)
+print(monitor.get_summary())
+```
+
+---
+
+## 📖 Comprehensive Guides
+
+| Guide | Description |
+|-------|-------------|
+| [COMPREHENSIVE-PROFILING-GUIDE.md](COMPREHENSIVE-PROFILING-GUIDE.md) | Complete profiling guide: single GPU to multi-node, DeepSpeed, FSDP |
+| [PROFILER-COMPARISON.md](PROFILER-COMPARISON.md) | Tool comparison and decision matrix |
+
+---
+
 ## 📚 Reference Materials
 
 - [NVIDIA Nsight Systems User Guide](https://docs.nvidia.com/nsight-systems/)
 - [NVIDIA Nsight Compute User Guide](https://docs.nvidia.com/nsight-compute/)
 - [PyTorch Profiler Tutorial](https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)
+- [DeepSpeed FLOPs Profiler](https://www.deepspeed.ai/tutorials/flops-profiler/)
 - [Roofline Model Paper](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-134.pdf)
 
 ---
 
-*Start with [01-nsight-systems/](01-nsight-systems/) for timeline analysis, or jump to [02-nsight-compute/](02-nsight-compute/) if you need kernel-level metrics.*
+*Start with [01-nsight-systems/](01-nsight-systems/) for timeline analysis, or jump to the [COMPREHENSIVE-PROFILING-GUIDE.md](COMPREHENSIVE-PROFILING-GUIDE.md) for distributed/DeepSpeed profiling.*

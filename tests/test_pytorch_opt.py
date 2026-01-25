@@ -109,17 +109,17 @@ class TestMixedPrecision:
     @pytest.mark.gpu
     def test_basic_amp_training(self, cuda_device):
         """Test basic AMP training loop."""
-        from torch.cuda.amp import autocast, GradScaler
+        from torch.amp import autocast, GradScaler
         
         model = nn.Linear(100, 10).to(cuda_device)
         optimizer = torch.optim.Adam(model.parameters())
-        scaler = GradScaler()
+        scaler = GradScaler('cuda')
         
         x = torch.randn(32, 100, device=cuda_device)
         target = torch.randint(0, 10, (32,), device=cuda_device)
         
         # AMP forward
-        with autocast(dtype=torch.float16):
+        with autocast('cuda', dtype=torch.float16):
             output = model(x)
             loss = nn.functional.cross_entropy(output, target)
         
@@ -135,12 +135,12 @@ class TestMixedPrecision:
     @pytest.mark.gpu
     def test_autocast_preserves_dtype(self, cuda_device):
         """Test autocast context manager."""
-        from torch.cuda.amp import autocast
+        from torch.amp import autocast
         
         model = nn.Linear(100, 100).to(cuda_device)
         x = torch.randn(32, 100, device=cuda_device, dtype=torch.float32)
         
-        with autocast(dtype=torch.float16):
+        with autocast('cuda', dtype=torch.float16):
             output = model(x)
             # Inside autocast, operations use FP16
             assert output.dtype == torch.float16
@@ -156,7 +156,7 @@ class TestMixedPrecision:
     )
     def test_bf16_training(self, cuda_device):
         """Test BF16 training (no scaler needed)."""
-        from torch.cuda.amp import autocast
+        from torch.amp import autocast
         
         model = nn.Linear(100, 10).to(cuda_device)
         optimizer = torch.optim.Adam(model.parameters())
@@ -165,7 +165,7 @@ class TestMixedPrecision:
         target = torch.randint(0, 10, (32,), device=cuda_device)
         
         # BF16 doesn't need GradScaler
-        with autocast(dtype=torch.bfloat16):
+        with autocast('cuda', dtype=torch.bfloat16):
             output = model(x)
             loss = nn.functional.cross_entropy(output, target)
         
@@ -176,18 +176,18 @@ class TestMixedPrecision:
     @pytest.mark.gpu
     def test_grad_scaler_overflow_handling(self, cuda_device):
         """Test GradScaler handles overflow."""
-        from torch.cuda.amp import autocast, GradScaler
+        from torch.amp import autocast, GradScaler
         
         model = nn.Linear(100, 10).to(cuda_device)
         optimizer = torch.optim.Adam(model.parameters())
-        scaler = GradScaler()
+        scaler = GradScaler('cuda')
         
         x = torch.randn(32, 100, device=cuda_device)
         target = torch.randint(0, 10, (32,), device=cuda_device)
         
         # Simulate potential overflow scenario
         for _ in range(5):
-            with autocast(dtype=torch.float16):
+            with autocast('cuda', dtype=torch.float16):
                 output = model(x)
                 loss = nn.functional.cross_entropy(output, target)
             
@@ -273,7 +273,7 @@ class TestPyTorchOptIntegration:
     @pytest.mark.integration
     def test_full_training_with_optimizations(self, cuda_device):
         """Test complete training loop with all optimizations."""
-        from torch.cuda.amp import autocast, GradScaler
+        from torch.amp import autocast, GradScaler
         
         # Model
         model = nn.Sequential(
@@ -297,7 +297,7 @@ class TestPyTorchOptIntegration:
         except RuntimeError:
             optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)
         
-        scaler = GradScaler()
+        scaler = GradScaler('cuda')
         
         # Training loop with fixed random seed for reproducibility
         torch.manual_seed(42)
@@ -306,7 +306,7 @@ class TestPyTorchOptIntegration:
         
         losses = []
         for step in range(50):
-            with autocast(dtype=torch.float16):
+            with autocast('cuda', dtype=torch.float16):
                 output = model(x_fixed)
                 loss = nn.functional.mse_loss(output, target_fixed)
             

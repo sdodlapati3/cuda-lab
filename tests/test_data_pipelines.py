@@ -182,12 +182,14 @@ class TestDALIPipeline:
         assert isinstance(dali_available, bool)
     
     @pytest.mark.gpu
-    @pytest.mark.skipif(
-        not pytest.importorskip("nvidia.dali", reason="DALI not installed"),
-        reason="DALI not available"
-    )
     def test_dali_synthetic_pipeline(self, cuda_device, repo_root):
         """Test DALI synthetic pipeline."""
+        # Check if DALI is available first
+        try:
+            import nvidia.dali
+        except ImportError:
+            pytest.skip("DALI not installed")
+        
         sys.path.insert(0, str(repo_root / "data-pipelines" / "02-dali"))
         
         try:
