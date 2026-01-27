@@ -45,57 +45,56 @@ else
 fi
 echo ""
 
+# =============================================================================
+# Check Nsight Tools from conda environment (Waterfield HPC specific)
+# =============================================================================
+NSIGHT_HOME="$HOME/envs/nsight_tools/nsight-compute-2025.4.1"
+NSYS="$NSIGHT_HOME/host/target-linux-x64/nsys"
+NCU="$NSIGHT_HOME/ncu"
+
+echo "=== Nsight Tools (conda env: nsight_tools) ==="
+echo "NSIGHT_HOME: $NSIGHT_HOME"
+echo ""
+
 # Check Nsight Systems
 echo "=== Nsight Systems ==="
-if command -v nsys &> /dev/null; then
-    echo "✅ nsys found: $(which nsys)"
+if [ -x "$NSYS" ]; then
+    echo "✅ nsys found: $NSYS"
+    $NSYS --version
+    export NSYS_PATH="$NSYS"
+elif command -v nsys &> /dev/null; then
+    echo "✅ nsys found in PATH: $(which nsys)"
     nsys --version
 else
-    echo "❌ nsys not found in PATH"
-    # Search common locations
-    for nsys_path in /usr/local/cuda*/bin/nsys /opt/nvidia/nsight-systems*/bin/nsys; do
-        if [ -x "$nsys_path" ]; then
-            echo "Found nsys at: $nsys_path"
-            $nsys_path --version
-            export NSYS_PATH="$nsys_path"
-            break
-        fi
-    done
+    echo "❌ nsys not found"
+    echo "   Expected at: $NSYS"
 fi
 echo ""
 
 # Check Nsight Compute
 echo "=== Nsight Compute ==="
-if command -v ncu &> /dev/null; then
-    echo "✅ ncu found: $(which ncu)"
+if [ -x "$NCU" ]; then
+    echo "✅ ncu found: $NCU"
+    $NCU --version
+    export NCU_PATH="$NCU"
+elif command -v ncu &> /dev/null; then
+    echo "✅ ncu found in PATH: $(which ncu)"
     ncu --version
 else
-    echo "❌ ncu not found in PATH"
-    # Search common locations
-    for ncu_path in /usr/local/cuda*/bin/ncu /opt/nvidia/nsight-compute*/ncu; do
-        if [ -x "$ncu_path" ]; then
-            echo "Found ncu at: $ncu_path"
-            $ncu_path --version
-            export NCU_PATH="$ncu_path"
-            break
-        fi
-    done
+    echo "❌ ncu not found"
+    echo "   Expected at: $NCU"
 fi
 echo ""
 
 # Check ncu-ui (GUI)
 echo "=== Nsight Compute GUI ==="
-if command -v ncu-ui &> /dev/null; then
-    echo "✅ ncu-ui found: $(which ncu-ui)"
+NCU_UI="$NSIGHT_HOME/ncu-ui"
+if [ -x "$NCU_UI" ]; then
+    echo "✅ ncu-ui found: $NCU_UI"
+    echo "   (Run locally with X11 forwarding or download reports)"
 else
-    echo "ℹ️  ncu-ui not in PATH (GUI typically run locally, not on cluster)"
+    echo "ℹ️  ncu-ui not found (GUI typically run locally, not on cluster)"
 fi
-echo ""
-
-# List all NVIDIA profiling tools found
-echo "=== All NVIDIA Tools Found ==="
-find /usr/local -name "nsys" -o -name "ncu" -o -name "nvprof" 2>/dev/null | head -20
-find /opt -name "nsys" -o -name "ncu" 2>/dev/null | head -10
 echo ""
 
 # Quick functionality test
@@ -103,10 +102,9 @@ echo "=== Quick Functionality Test ==="
 cd $HOME/cuda-lab
 
 # Test nsys with a simple command
-if command -v nsys &> /dev/null || [ -n "$NSYS_PATH" ]; then
-    NSYS_CMD=${NSYS_PATH:-nsys}
+if [ -n "$NSYS_PATH" ]; then
     echo "Testing nsys profile..."
-    $NSYS_CMD profile -o /tmp/test_profile --stats=true sleep 1 2>&1 | head -10
+    $NSYS_PATH profile -o /tmp/test_profile --stats=true sleep 1 2>&1 | head -10
     rm -f /tmp/test_profile.nsys-rep
     echo "✅ nsys works!"
 else
@@ -115,10 +113,9 @@ fi
 echo ""
 
 # Test ncu (may require elevated permissions)
-if command -v ncu &> /dev/null || [ -n "$NCU_PATH" ]; then
-    NCU_CMD=${NCU_PATH:-ncu}
-    echo "Testing ncu (listing available metrics)..."
-    $NCU_CMD --list-sets 2>&1 | head -10
+if [ -n "$NCU_PATH" ]; then
+    echo "Testing ncu (listing available metric sets)..."
+    $NCU_PATH --list-sets 2>&1 | head -10
     echo "✅ ncu works!"
 else
     echo "⚠️  Cannot test ncu - not found"
@@ -129,11 +126,14 @@ echo "=============================================="
 echo "Test Complete"
 echo "=============================================="
 echo ""
-echo "Next steps:"
-echo "1. If tools are available, build and profile the exercises:"
-echo "   cd profiling-lab/02-nsight-compute/ex01-memory-metrics"
-echo "   make && ncu --section MemoryWorkloadAnalysis ./memory_bandwidth"
+echo "To use these tools, either:"
+echo "  1. source scripts/setup-nsight-env.sh"
+echo "  2. Use full paths: \$NCU, \$NSYS"
 echo ""
+echo "Example profiling commands:"
+echo "  \$NSYS profile -o my_report python train.py"
+echo "  \$NCU --section MemoryWorkloadAnalysis ./my_cuda_app"
+echo "  \$NCU -o kernel_report --set full ./my_cuda_app"
 echo "2. To generate reports for local viewing:"
 echo "   ncu -o report_name --set full ./your_app"
 echo "   # Download report_name.ncu-rep to your local machine"

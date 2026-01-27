@@ -129,23 +129,46 @@ ncu --section MemoryWorkloadAnalysis ./memory_bandwidth
 
 ---
 
-## 🔧 Tool Installation
+## 🔧 Tool Installation & Paths
+
+### ⚠️ Important: Nsight Tools Location on Waterfield HPC
+
+The Nsight tools are installed in a **conda environment**, not in the system PATH.
+
+```bash
+# Quick setup - source this before profiling:
+source scripts/setup-nsight-env.sh
+
+# Or use these paths directly:
+export NSIGHT_HOME="$HOME/envs/nsight_tools/nsight-compute-2025.4.1"
+export NSYS="$NSIGHT_HOME/host/target-linux-x64/nsys"
+export NCU="$NSIGHT_HOME/ncu"
+export NCU_UI="$NSIGHT_HOME/ncu-ui"
+```
+
+| Tool | Path | Version |
+|------|------|---------|
+| **nsys** | `~/envs/nsight_tools/nsight-compute-2025.4.1/host/target-linux-x64/nsys` | 2025.4.1 |
+| **ncu** | `~/envs/nsight_tools/nsight-compute-2025.4.1/ncu` | 2025.4.1 |
+| **ncu-ui** | `~/envs/nsight_tools/nsight-compute-2025.4.1/ncu-ui` | GUI |
 
 ### Nsight Systems
 ```bash
-# Usually bundled with CUDA Toolkit
-nsys --version
+# On Waterfield HPC:
+$NSYS --version
+# Or: ~/envs/nsight_tools/nsight-compute-2025.4.1/host/target-linux-x64/nsys --version
 
-# Or install separately
+# General installation (other systems):
 # https://developer.nvidia.com/nsight-systems
 ```
 
 ### Nsight Compute
 ```bash
-# Usually bundled with CUDA Toolkit
-ncu --version
+# On Waterfield HPC:
+$NCU --version
+# Or: ~/envs/nsight_tools/nsight-compute-2025.4.1/ncu --version
 
-# May require sudo or admin rights for full metrics
+# May require elevated permissions for full metrics on some systems
 ```
 
 ### PyTorch Profiler

@@ -323,7 +323,50 @@ nvcc file1.o file2.o -o program
 
 ---
 
+## � Profiling Tools (Waterfield HPC)
+
+### Tool Paths
+```bash
+# Source environment setup (recommended):
+source scripts/setup-nsight-env.sh
+
+# Or use directly:
+NSIGHT_HOME="$HOME/envs/nsight_tools/nsight-compute-2025.4.1"
+NSYS="$NSIGHT_HOME/host/target-linux-x64/nsys"
+NCU="$NSIGHT_HOME/ncu"
+```
+
+### Nsight Systems (Timeline Analysis)
+```bash
+# Profile Python training
+$NSYS profile -o training_report python train.py
+
+# Profile with CUDA and NVTX traces
+$NSYS profile --trace=cuda,nvtx -o report ./app
+
+# View stats (CLI)
+$NSYS stats report.nsys-rep
+```
+
+### Nsight Compute (Kernel Analysis)
+```bash
+# Profile all kernels
+$NCU ./my_cuda_app
+
+# Memory analysis
+$NCU --section MemoryWorkloadAnalysis ./app
+
+# Roofline analysis
+$NCU --set roofline -o roofline_report ./app
+
+# Full report for GUI
+$NCU -o report --set full ./app
+```
+
+---
+
 ## 🔗 Related Resources
 
 - [CUDA Programming Guide](../cuda-programming-guide/index.md) - Full documentation
 - [Practice Examples](../practice/) - Hands-on code
+- [Profiling Lab](../profiling-lab/) - Nsight Systems & Compute exercises

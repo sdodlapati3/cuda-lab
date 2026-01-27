@@ -1,4 +1,9 @@
 # Makefile for memory metrics exercise
+# Nsight tools paths (source scripts/setup-nsight-env.sh or use these directly)
+NSIGHT_HOME ?= $(HOME)/envs/nsight_tools/nsight-compute-2025.4.1
+NCU ?= $(NSIGHT_HOME)/ncu
+NSYS ?= $(NSIGHT_HOME)/host/target-linux-x64/nsys
+
 NVCC = nvcc
 NVCC_FLAGS = -O3 -lineinfo
 DEBUG_FLAGS = -g -G
@@ -19,17 +24,17 @@ debug: $(SRC)
 # Profile with Nsight Compute
 profile: $(TARGET)
 	@echo "=== Profiling coalesced_copy ==="
-	ncu --kernel-name coalesced_copy --section MemoryWorkloadAnalysis ./$(TARGET)
+	$(NCU) --kernel-name coalesced_copy --section MemoryWorkloadAnalysis ./$(TARGET)
 	@echo ""
 	@echo "=== Profiling strided_copy ==="
-	ncu --kernel-name strided_copy --section MemoryWorkloadAnalysis ./$(TARGET)
+	$(NCU) --kernel-name strided_copy --section MemoryWorkloadAnalysis ./$(TARGET)
 	@echo ""
 	@echo "=== Profiling random_copy ==="
-	ncu --kernel-name random_copy --section MemoryWorkloadAnalysis ./$(TARGET)
+	$(NCU) --kernel-name random_copy --section MemoryWorkloadAnalysis ./$(TARGET)
 
 # Generate full report
 report: $(TARGET)
-	ncu -o memory_metrics_report --set full ./$(TARGET)
+	$(NCU) -o memory_metrics_report --set full ./$(TARGET)
 	@echo "Report saved to memory_metrics_report.ncu-rep"
 	@echo "Open with: ncu-ui memory_metrics_report.ncu-rep"
 
