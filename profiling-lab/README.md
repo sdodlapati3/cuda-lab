@@ -11,6 +11,20 @@ This lab develops the profiling skills essential for HPC and ML performance engi
 
 ---
 
+## 📈 Current Status
+
+| Module | Documentation | Source Code | Profile Reports | Status |
+|--------|---------------|-------------|-----------------|--------|
+| 01-nsight-systems | ✅ Complete | ✅ `baseline.cu`, `improved.cu` | ✅ 2 `.nsys-rep` files | **Ready** |
+| 02-nsight-compute | ✅ Complete | ✅ 4 CUDA programs | ⬜ Not yet generated | **Ready** |
+| 03-pytorch-profiler | ✅ Complete | ✅ `profile_training.py` | ⬜ Not yet generated | Partial |
+| 04-energy-profiling | ✅ Complete | ✅ `energy_benchmark.py` | ⬜ Not yet generated | Partial |
+| 05-advanced-nsight | ✅ Complete | ✅ 8 Python files | ⬜ Not yet generated | **Ready** |
+
+**Last Updated:** January 2026
+
+---
+
 ## 🎯 NESAP Skill Alignment
 
 | NESAP Requirement | This Lab Covers |
@@ -41,14 +55,21 @@ This lab develops the profiling skills essential for HPC and ML performance engi
 ### [02-nsight-compute/](02-nsight-compute/)
 **Kernel-Level Analysis & Roofline**
 
-| Exercise | Topic | Difficulty |
-|----------|-------|------------|
-| ex01-memory-metrics | Bandwidth utilization, cache hit rates | ⭐⭐⭐ |
-| ex02-compute-metrics | Occupancy, warp execution efficiency | ⭐⭐⭐ |
-| ex03-roofline-practice | Plot kernels, identify bottleneck type | ⭐⭐⭐⭐ |
-| ex04-optimization-loop | Profile → optimize → reprofile cycle | ⭐⭐⭐⭐ |
+| Exercise | Topic | Source Code | Difficulty |
+|----------|-------|-------------|------------|
+| ex01-memory-metrics | Bandwidth utilization, cache hit rates | `memory_bandwidth.cu` | ⭐⭐⭐ |
+| ex02-compute-metrics | Occupancy, warp execution efficiency | `compute_metrics.cu` | ⭐⭐⭐ |
+| ex03-roofline-practice | Plot kernels, identify bottleneck type | `roofline_kernels.cu` | ⭐⭐⭐⭐ |
+| ex04-optimization-loop | Profile → optimize → reprofile cycle | `optimization_loop.cu` | ⭐⭐⭐⭐ |
 
 **Key skills:** Memory-bound vs compute-bound, optimization targeting
+
+**Quick Start:**
+```bash
+cd 02-nsight-compute/ex01-memory-metrics
+make && ./memory_bandwidth
+ncu --section MemoryWorkloadAnalysis ./memory_bandwidth
+```
 
 ---
 

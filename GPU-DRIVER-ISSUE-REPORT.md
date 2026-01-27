@@ -3,6 +3,7 @@
 **Date:** January 24, 2026  
 **Reported by:** sdodl001  
 **Cluster:** Waterfield HPC  
+**Note:** This report was generated with AI assistance (GitHub Copilot)
 
 ---
 
@@ -129,18 +130,8 @@ nvidia-smi -L
 ## Additional Issues Found
 
 ### B200 Partition Issue
-- Job 44 stuck in `CONFIGURING` state for 4+ hours on `wf-a4-highgpu-8g-1`
-- B200 partition requires `restricted_gpu` QOS (not documented for users)
+- Job 44 stuck in `CONFIGURING` state for 24+ hours on `wf-a4-highgpu-8g-1`
 - B200 also uses Blackwell architecture - likely has same driver issue
-
----
-
-## Impact
-
-- **All 44 RTX PRO 6000 nodes** across 4 partitions are effectively offline
-- Users cannot access the most cost-effective GPU resources
-- Jobs are allocated but fail silently (no GPU access)
-- Slurm accounting charges users for GPU time that cannot be used
 
 ---
 

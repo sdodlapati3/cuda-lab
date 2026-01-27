@@ -1,0 +1,26 @@
+
+--------------------------------------------------------------------------------------------- /cm/shared/mls/Containers/0.1 ---------------------------------------------------------------------------------------------
+   dt4co-compute/2025.11.06       python3/2024.2-py310        pytorch-gpu/2.8.0    tensorflow-gpu/2.2.0     tensorflow-gpu/2.16.2 (D)
+   dt4co-preprocess/2025.09.17    python3/2025.1-py312 (D)    sword2/2.0.1         tensorflow-gpu/2.14.0
+
+-------------------------------------------------------------------------------------------------- /cm/shared/mls/Core --------------------------------------------------------------------------------------------------
+   slurm/25.05.2 (L)
+
+  Where:
+   D:  Default Module
+   L:  Module is loaded
+
+If the avail list is too long consider trying:
+
+"module --default avail" or "ml -d av" to just list the default modules.
+"module overview" or "ml ov" to display the number of modules for each name.
+
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+
+
+setenv MODULEPATH /cm/shared/mls/Containers/0.1:/etc/modulefiles:/usr/share/modulefiles:/cm/shared/mls/Core;
+setenv _ModuleTable001_ X01vZHVsZVRhYmxlXyA9IHsKTVR2ZXJzaW9uID0gMywKY19yZWJ1aWxkVGltZSA9IDcyMDAuMCwKY19zaG9ydFRpbWUgPSAwLjAzODA5MDk0NDI5MDE2MSwKZGVwdGhUID0ge30sCmZhbWlseSA9IHt9LAptVCA9IHsKY29udGFpbmVyX2VudiA9IHsKYWN0aW9uQSA9IHsKW1twcmVwZW5kX3BhdGgoIk1PRFVMRVBBVEgiLCIvY20vc2hhcmVkL21scy9Db250YWluZXJzLzAuMS8iKV1dLAp9LApmbiA9ICIvY20vc2hhcmVkL21scy9Db3JlL2NvbnRhaW5lcl9lbnYvMC4xLmx1YSIsCmZ1bGxOYW1lID0gImNvbnRhaW5lcl9lbnYvMC4xIiwKbG9hZE9yZGVyID0gMiwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJjb250YWlu;
+setenv _ModuleTable002_ ZXJfZW52IiwKd1YgPSAiMDAwMDAwMDAwLjAwMDAwMDAwMS4qemZpbmFsIiwKfSwKc2x1cm0gPSB7CmZuID0gIi9jbS9zaGFyZWQvbWxzL0NvcmUvc2x1cm0vMjUuMDUuMi5sdWEiLApmdWxsTmFtZSA9ICJzbHVybS8yNS4wNS4yIiwKbG9hZE9yZGVyID0gMSwKcHJvcFQgPSB7fSwKc3RhY2tEZXB0aCA9IDAsCnN0YXR1cyA9ICJhY3RpdmUiLAp1c2VyTmFtZSA9ICJzbHVybSIsCndWID0gIjAwMDAwMDAyNS4wMDAwMDAwMDUuMDAwMDAwMDAyLip6ZmluYWwiLAp9LAp9LAptcGF0aEEgPSB7CiIvY20vc2hhcmVkL21scy9Db250YWluZXJzLzAuMSIsICIvZXRjL21vZHVsZWZpbGVzIiwgIi91c3Ivc2hhcmUvbW9kdWxlZmlsZXMiLCAiL2NtL3NoYXJlZC9tbHMvQ29yZSIsCn0sCnN5;
+setenv _ModuleTable003_ c3RlbUJhc2VNUEFUSCA9ICIvZXRjL21vZHVsZWZpbGVzOi91c3Ivc2hhcmUvbW9kdWxlZmlsZXM6L2NtL3NoYXJlZC9tbHMvQ29yZTovY20vc2hhcmVkL21scy9Db250YWluZXJzLzAuMSIsCn0K;
+setenv _ModuleTable_Sz_ 3;
