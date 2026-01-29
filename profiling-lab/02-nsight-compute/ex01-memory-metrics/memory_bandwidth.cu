@@ -212,8 +212,8 @@ int main(int argc, char **argv)
     cudaDeviceProp prop;
     CUDA_CHECK(cudaGetDeviceProperties(&prop, 0));
     printf("Device: %s\n", prop.name);
-    printf("Theoretical peak bandwidth: %.2f GB/s\n\n",
-           2.0 * prop.memoryClockRate * (prop.memoryBusWidth / 8) / 1e6);
+    // Note: memoryClockRate deprecated in CUDA 12+, just print bus width
+    printf("Memory bus width: %d bits\n\n", prop.memoryBusWidth);
 
     // Allocate host memory
     float *h_src = (float *)malloc(N * sizeof(float));
